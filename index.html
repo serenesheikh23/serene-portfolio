@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Serene Sheikhalard — Full-Stack Web Developer</title>
+<title>Serene Sheikhalard</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Manrope:wght@400;500;600;700&family=Noto+Naskh+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -63,7 +63,7 @@
   }
   @media(min-width:860px){ .hero-grid{grid-template-columns:1.15fr 0.85fr;gap:60px;} }
   .eyebrow{
-    font-size:14px;color:var(--gold);
+    font-size:12.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);
     margin-bottom:18px;
   }
   .hero h1{
@@ -87,7 +87,10 @@
     position:relative;justify-self:center;
   }
   .photo-frame img{
-    width:min(340px,72vw);aspect-ratio:1/1.05;object-fit:cover;
+    width:min(340px,72vw);
+    aspect-ratio:1/1.05;
+    object-fit:cover;
+    object-position:center 20%;
     border-radius:6px;
     filter:grayscale(.08) contrast(1.02);
     box-shadow:0 30px 60px -20px rgba(0,0,0,.6);
@@ -96,6 +99,7 @@
     content:'';position:absolute;inset:14px -14px -14px 14px;
     border:1px solid var(--gold);border-radius:6px;z-index:-1;
   }
+
   /* SECTION SHELL */
   section{padding:90px 0;border-top:1px solid var(--line);}
   .section-num{
@@ -153,15 +157,13 @@
   .stat{
     border:1px solid var(--line);border-radius:8px;padding:12px 14px;
   }
-  .stat .num{font-family:'Newsreader',serif;font-size:20px;color:var(--gold);font-weight:500;}
+  .stat .num{font-family:'Newsreader',serif;font-size:22px;color:var(--gold);font-weight:500;}
   .stat .label{font-size:11.5px;color:var(--text-dim);text-transform:uppercase;letter-spacing:.05em;}
-  .proj-live{display:inline-flex;align-items:center;gap:6px;font-size:13.5px;color:#7FB4D9;border-bottom:1px solid #7FB4D9;margin-top:4px;}
-  .proj-live:hover{color:#9EC9E5;border-color:#9EC9E5;}
 
   /* SKILLS */
   .skill-groups{display:grid;grid-template-columns:1fr;gap:28px;}
   @media(min-width:700px){ .skill-groups{grid-template-columns:repeat(2,1fr);} }
-  .skill-group h3{font-size:14px;color:var(--gold);margin:0 0 14px;font-weight:600;}
+  .skill-group h3{font-size:14px;color:var(--gold);text-transform:uppercase;letter-spacing:.08em;margin:0 0 14px;font-weight:600;}
   .pill-row{display:flex;flex-wrap:wrap;gap:9px;}
   .pill{
     padding:7px 14px;border:1px solid var(--line);border-radius:999px;
@@ -173,14 +175,12 @@
   .edu-item:last-child{border-bottom:none;}
   .edu-item h3{margin:0 0 4px;font-size:17px;font-weight:600;color:var(--text);}
   .edu-item p{margin:0;color:var(--text-dim);font-size:14.5px;}
-  .edu-item a.verify-link{color:#7FB4D9;border-bottom:1px solid #7FB4D9;}
-  .edu-item a.verify-link:hover{color:#9EC9E5;border-color:#9EC9E5;}
+  .edu-item a{color:var(--rose);border-bottom:1px solid var(--rose);}
 
   /* CONTACT */
   .contact-section{border-bottom:none;padding-bottom:60px;}
-  .contact-hero{font-size:clamp(30px,5vw,48px);font-weight:500;max-width:16ch;margin:0 0 14px;}
+  .contact-hero{font-size:clamp(30px,5vw,48px);font-weight:500;max-width:16ch;margin:0 0 40px;}
   .contact-hero em{color:var(--rose);font-style:italic;}
-  .contact-note{color:var(--text-dim);font-size:14.5px;margin:0 0 34px;max-width:50ch;}
   .contact-grid{display:grid;grid-template-columns:1fr;gap:14px;}
   @media(min-width:600px){ .contact-grid{grid-template-columns:1fr 1fr;} }
   .contact-card{
@@ -211,20 +211,19 @@
   <header class="hero">
     <div class="wrap hero-grid">
       <div>
-        <div class="eyebrow" data-en="Full-Stack Web Developer · US Citizen · Open to Remote (US Time Zones)" data-ar="مطوّرة ويب متكاملة · مواطنة أمريكية · متاحة للعمل عن بُعد (بتوقيت الولايات المتحدة)">Full-Stack Web Developer · US Citizen · Open to Remote (US Time Zones)</div>
+        <div class="eyebrow" data-en="Full-Stack Web Developer · US Citizen · Open to Remote (US Time Zones)" data-ar="مطوّرة ويب متكاملة · مواطنة أمريكية · متاحة للعمل عن بُعد (التوقيت الأمريكي)">Full-Stack Web Developer · US Citizen · Open to Remote (US Time Zones)</div>
         <h1 class="serif">
           <span data-en="Serene" data-ar="سيرين">Serene</span> <em data-en="Sheikhalard" data-ar="شيخ الأرض">Sheikhalard</em>
         </h1>
-        <p class="intro" data-en="Remote-ready full-stack developer with end-to-end ownership of production features — from React architecture to Laravel backend and admin dashboard design. I've shipped a live institutional CMS platform and built a full-stack e-commerce app with JWT auth, cloud deployment, and CI/CD." data-ar="مطوّرة ويب متكاملة جاهزة للعمل عن بُعد، أتولى المسؤولية الكاملة لميزات الإنتاج من الألف إلى الياء — من بنية React إلى خلفية Laravel وتصميم لوحات التحكم الإدارية. أطلقت منصة إدارة محتوى مؤسسية حية، وبنيت تطبيق تجارة إلكترونية متكامل باستخدام JWT وCI/CD والنشر السحابي.">Remote-ready full-stack developer with end-to-end ownership of production features — from React architecture to Laravel backend and admin dashboard design. I've shipped a live institutional CMS platform and built a full-stack e-commerce app with JWT auth, cloud deployment, and CI/CD.</p>
+        <p class="intro" data-en="Remote-ready full-stack developer with end-to-end ownership of production features — from React architecture to Laravel backend and admin dashboard design. I've shipped a live institutional CMS platform and built a full-stack e-commerce app with JWT auth, cloud deployment, and CI/CD." data-ar="مطوّرة ويب متكاملة جاهزة للعمل عن بُعد، مع ملكية كاملة لميزات الإنتاج من الألف إلى الياء — من هندسة React إلى خلفية Laravel وتصميم لوحات التحكم الإدارية. أنجزت منصة CMS مؤسسية حية وطوّرت تطبيق تجارة إلكترونية متكامل مع مصادقة JWT ونشر سحابي وCI/CD.">Remote-ready full-stack developer with end-to-end ownership of production features — from React architecture to Laravel backend and admin dashboard design. I've shipped a live institutional CMS platform and built a full-stack e-commerce app with JWT auth, cloud deployment, and CI/CD.</p>
         <div class="hero-links">
-          <a class="btn btn-primary" href="Serene_Sheikhalard_FullStack_Developer.pdf" download data-en="↓ Download Résumé" data-ar="↓ تحميل السيرة الذاتية">↓ Download Résumé</a>
+          <a class="btn btn-primary" href="Serene_Sheikhalard_Resume.pdf" download data-en="↓ Download Resume" data-ar="↓ تحميل السيرة الذاتية">↓ Download Resume</a>
           <a class="btn btn-ghost" href="mailto:serenesheikh23@gmail.com" data-en="Email" data-ar="البريد الإلكتروني">Email</a>
-          <a class="btn btn-ghost" href="https://www.linkedin.com/in/serene-sheikhalard" target="_blank" rel="noopener">LinkedIn</a>
-          <a class="btn btn-ghost" href="https://wa.me/963933135837" target="_blank" rel="noopener" data-en="WhatsApp" data-ar="واتساب">WhatsApp</a>
+          <a class="btn btn-ghost" href="https://linkedin.com/in/serenesheikhalard" target="_blank" rel="noopener">LinkedIn</a>
         </div>
       </div>
       <div class="photo-frame">
-        <img src="data:image/jpeg;base64,PASTE_YOUR_EXISTING_BASE64_IMAGE_STRING_HERE" alt="Serene Sheikhalard">
+        <img src="serene-photo.jpg" alt="Serene Sheikhalard">
       </div>
     </div>
   </header>
@@ -235,15 +234,13 @@
       <div>
         <div class="section-num">01</div>
         <h2 class="section-title serif" data-en="About" data-ar="نبذة">About</h2>
-        <p data-en="I'm a US-citizen, remote-ready full-stack developer specialized in Laravel and React, with hands-on experience across the entire lifecycle of a web application — from database design and API architecture to front-end interfaces and cloud deployment." data-ar="أنا مطوّرة ويب متكاملة، مواطنة أمريكية وجاهزة للعمل عن بُعد، متخصصة في Laravel وReact، ولدي خبرة عملية عبر دورة حياة تطبيق الويب بأكملها — من تصميم قواعد البيانات وبناء واجهات برمجة التطبيقات إلى الواجهات الأمامية والنشر السحابي.">I'm a US-citizen, remote-ready full-stack developer specialized in Laravel and React, with hands-on experience across the entire lifecycle of a web application — from database design and API architecture to front-end interfaces and cloud deployment.</p>
-        <p data-en="My work spans a live institutional CMS platform serving hundreds of weekly visitors, a full-stack SaaS platform with real-time features and role-based access control, and independent freelance builds I own end-to-end. I'm comfortable working asynchronously with technical and non-technical stakeholders across time zones, and I care about clean, maintainable code as much as I care about shipping." data-ar="امتد عملي بين منصة إدارة محتوى مؤسسية حية تخدم مئات الزوار أسبوعياً، ومنصة SaaS متكاملة بميزات آنية وصلاحيات مبنية على الأدوار، ومشاريع حرة أملك زمامها بالكامل. أعمل بارتياح بشكل غير متزامن مع أصحاب المصلحة التقنيين وغير التقنيين عبر مناطق زمنية مختلفة، وأهتم بكتابة كود نظيف وقابل للصيانة بقدر اهتمامي بإنجاز العمل.">My work spans a live institutional CMS platform serving hundreds of weekly visitors, a full-stack SaaS platform with real-time features and role-based access control, and independent freelance builds I own end-to-end. I'm comfortable working asynchronously with technical and non-technical stakeholders across time zones, and I care about clean, maintainable code as much as I care about shipping.</p>
+        <p data-en="I'm a full-stack developer based in Damascus, specialized in Laravel and PHP, with hands-on experience across the entire lifecycle of a web application — from database design and API architecture to front-end interfaces and deployment." data-ar="أنا مطوّرة ويب متكاملة مقيمة في دمشق، متخصصة في Laravel وPHP، ولدي خبرة عملية عبر دورة حياة تطبيق الويب بأكملها — من تصميم قواعد البيانات وبناء واجهات برمجة التطبيقات إلى الواجهات الأمامية والنشر.">I'm a full-stack developer based in Damascus, specialized in Laravel and PHP, with hands-on experience across the entire lifecycle of a web application — from database design and API architecture to front-end interfaces and deployment.</p>
+        <p data-en="My work spans a live institutional platform serving hundreds of weekly visitors, an independent freelance build I own end-to-end, and a real-time interactive system built to handle concurrent load without failure. I care about clean, maintainable code as much as I care about shipping." data-ar="امتد عملي بين منصة مؤسسية حية تخدم مئات الزوار أسبوعياً، ومشروع حر أملك زمامه بالكامل من الألف إلى الياء، ونظام تفاعلي بالوقت الفعلي مصمم للتعامل مع أحمال متزامنة دون فشل. أهتم بكتابة كود نظيف وقابل للصيانة بقدر اهتمامي بإنجاز العمل.">My work spans a live institutional platform serving hundreds of weekly visitors, an independent freelance build I own end-to-end, and a real-time interactive system built to handle concurrent load without failure. I care about clean, maintainable code as much as I care about shipping.</p>
       </div>
       <ul class="facts">
-        <li><span data-en="Citizenship" data-ar="الجنسية">Citizenship</span><span data-en="US Citizen" data-ar="مواطنة أمريكية">US Citizen</span></li>
-        <li><span data-en="Availability" data-ar="التوفر">Availability</span><span data-en="Remote (US Time Zones)" data-ar="عن بُعد (بتوقيت الولايات المتحدة)">Remote (US Time Zones)</span></li>
-        <li><span data-en="Based in" data-ar="مقيمة في">Based in</span><span>Damascus, Syria</span></li>
+        <li><span data-en="Location" data-ar="الموقع">Location</span><span>Damascus, Syria</span></li>
         <li><span data-en="Languages" data-ar="اللغات">Languages</span><span data-en="Arabic, English" data-ar="العربية، الإنجليزية">Arabic, English</span></li>
-        <li><span data-en="Focus" data-ar="التخصص">Focus</span><span>React · Laravel · TypeScript</span></li>
+        <li><span data-en="Focus" data-ar="التخصص">Focus</span><span>Laravel · PHP · MySQL</span></li>
       </ul>
     </div>
   </section>
@@ -258,13 +255,11 @@
         <div class="exp-date">May 2025 — Mar 2026</div>
         <div>
           <h3 class="exp-role" data-en="Full-Stack Developer (Trainee Program)" data-ar="مطوّرة ويب متكاملة (برنامج تدريبي)">Full-Stack Developer (Trainee Program)</h3>
-          <p class="exp-org">Mad Fox (Althaalab Almaker)</p>
+          <p class="exp-org">Mad Fox (Althaalab Almaker) — Damascus, Syria</p>
           <ul>
-            <li data-en="Owned front-end and back-end delivery for 3 client web applications end-to-end, independently architecting React/Laravel + Tailwind CSS interfaces on self-directed timelines." data-ar="تولّيت المسؤولية الكاملة لتسليم 3 تطبيقات ويب لعملاء مختلفين من الألف إلى الياء، وصممت بشكل مستقل واجهات React/Laravel + Tailwind CSS ضمن جداول زمنية ذاتية التنظيم.">Owned front-end and back-end delivery for 3 client web applications end-to-end, independently architecting React/Laravel + Tailwind CSS interfaces on self-directed timelines.</li>
-            <li data-en="Improved page load speed by ~30% by refactoring templates and optimizing database queries." data-ar="حسّنت سرعة تحميل الصفحات بنسبة 30% تقريباً من خلال إعادة هيكلة القوالب وتحسين استعلامات قاعدة البيانات.">Improved page load speed by ~30% by refactoring templates and optimizing database queries.</li>
-            <li data-en="Reduced recurring bugs by 40% by introducing systematic Git workflows and peer code review." data-ar="قلّلت الأخطاء البرمجية المتكررة بنسبة 40% من خلال اعتماد آليات عمل منظمة على Git ومراجعات دورية للكود.">Reduced recurring bugs by 40% by introducing systematic Git workflows and peer code review.</li>
-            <li data-en="Designed and built an internal admin system used daily by 5+ team members, supporting 50+ CRUD operations with zero data-integrity incidents." data-ar="صممت وبنيت نظاماً إدارياً داخلياً يستخدمه يومياً أكثر من 5 أعضاء فريق، يدعم أكثر من 50 عملية CRUD دون أي حادثة تتعلق بسلامة البيانات.">Designed and built an internal admin system used daily by 5+ team members, supporting 50+ CRUD operations with zero data-integrity incidents.</li>
-            <li data-en="Worked asynchronously across a distributed, time-zone-flexible workflow — streamlining frontend/backend handoff and saving the team 2+ hours per week." data-ar="عملت بشكل غير متزامن ضمن سير عمل موزّع ومرن زمنياً — مما بسّط عملية التسليم بين الواجهة الأمامية والخلفية ووفّر على الفريق أكثر من ساعتين أسبوعياً.">Worked asynchronously across a distributed, time-zone-flexible workflow — streamlining frontend/backend handoff and saving the team 2+ hours per week.</li>
+            <li data-en="Diagnosed front-end performance bottlenecks and refactored templates plus database queries, cutting page load speed by ~30%." data-ar="شخّصت اختناقات أداء الواجهة الأمامية وأعدت هيكلة القوالب واستعلامات قاعدة البيانات، مما قلّل سرعة تحميل الصفحات بنسبة 30%.">Diagnosed front-end performance bottlenecks and refactored templates plus database queries, cutting page load speed by ~30%.</li>
+            <li data-en="Introduced systematic Git workflows and peer code review across the team, reducing recurring bugs by 40% and improving asynchronous collaboration." data-ar="طبّقت آليات عمل منهجية على Git ومراجعات دورية للكود عبر الفريق، مما قلّل الأخطاء المتكررة بنسبة 40% وحسّن التعاون غير المتزامن.">Introduced systematic Git workflows and peer code review across the team, reducing recurring bugs by 40% and improving asynchronous collaboration.</li>
+            <li data-en="Designed and built an internal admin system used daily by 5+ team members, developing reusable UI components and backend controllers/models supporting 50+ CRUD operations with zero data-integrity incidents." data-ar="صمّمت وبنيت نظاماً إدارياً داخلياً يستخدمه يومياً 5+ من أعضاء الفريق، مع تطوير مكونات واجهة قابلة لإعادة الاستخدام ووحدات تحكم/نماذج خلفية تدعم 50+ عملية CRUD دون أي حوادث تتعلق بسلامة البيانات.">Designed and built an internal admin system used daily by 5+ team members, developing reusable UI components and backend controllers/models supporting 50+ CRUD operations with zero data-integrity incidents.</li>
           </ul>
         </div>
       </div>
@@ -280,36 +275,22 @@
       <div class="proj">
         <div class="proj-index serif">01</div>
         <div>
-          <h3 class="proj-title" data-en="Marketly — Full-Stack SaaS Platform" data-ar="Marketly — منصة SaaS متكاملة">Marketly — Full-Stack SaaS Platform</h3>
-          <p class="proj-desc" data-en="A full-stack SaaS platform architected with Laravel 13 API, React 19, and TypeScript. Implements role-based access control via Spatie, real-time features with Laravel Reverb WebSockets, and a bilingual (EN/AR) interface with full RTL support, including a dynamic custom form builder for manual order intake using Redux Toolkit. Also architected a secure, webhook-ready payment callback layer with HMAC signature verification and idempotency handling, prepped for Stripe integration." data-ar="منصة SaaS متكاملة، صُممت باستخدام Laravel 13 API وReact 19 وTypeScript. تتضمن صلاحيات مبنية على الأدوار عبر Spatie، وميزات آنية باستخدام WebSockets عبر Laravel Reverb، وواجهة ثنائية اللغة (عربي/إنجليزي) بدعم كامل للكتابة من اليمين لليسار، بالإضافة إلى أداة بناء نماذج مخصصة لإدخال الطلبات اليدوية باستخدام Redux Toolkit. كما صممت طبقة استدعاء دفع آمنة وجاهزة للربط عبر Webhook، مع التحقق من التوقيع باستخدام HMAC ومعالجة التكرار، تمهيداً لدمج Stripe.">A full-stack SaaS platform architected with Laravel 13 API, React 19, and TypeScript. Implements role-based access control via Spatie, real-time features with Laravel Reverb WebSockets, and a bilingual (EN/AR) interface with full RTL support, including a dynamic custom form builder for manual order intake using Redux Toolkit. Also architected a secure, webhook-ready payment callback layer with HMAC signature verification and idempotency handling, prepped for Stripe integration.</p>
-          <div class="tag-row"><span class="tag">Laravel 13</span><span class="tag">React 19</span><span class="tag">TypeScript</span><span class="tag">Redux Toolkit</span><span class="tag">RBAC</span><span class="tag">WebSockets</span><span class="tag">Docker</span><span class="tag">CI/CD</span></div>
+          <h3 class="proj-title"><a href="https://drama.gov.sy" target="_blank" rel="noopener">drama.gov.sy</a> — <span data-en="Institutional CMS Platform" data-ar="منصة CMS مؤسسية">Institutional CMS Platform</span></h3>
+          <p class="proj-desc" data-en="A fully dynamic Content Management System with a decoupled admin dashboard, enabling non-technical staff to independently update all site content — text, images, pages — without touching code. Serves 500+ weekly public visitors." data-ar="نظام إدارة محتوى ديناميكي بالكامل مع لوحة تحكم إدارية منفصلة، تمكن الموظفين غير التقنيين من تحديث جميع محتوى الموقع — النصوص والصور والصفحات — دون لمس الكود. يخدم 500+ زائر أسبوعياً.">A fully dynamic Content Management System with a decoupled admin dashboard, enabling non-technical staff to independently update all site content — text, images, pages — without touching code. Serves 500+ weekly public visitors.</p>
+          <div class="tag-row"><span class="tag">Laravel</span><span class="tag">Blade</span><span class="tag">Tailwind CSS</span><span class="tag">MySQL</span></div>
         </div>
         <div class="proj-meta">
-          <div class="stat"><div class="num" data-en="Bilingual" data-ar="ثنائية اللغة">Bilingual</div><div class="label" data-en="EN/AR with RTL" data-ar="عربي/إنجليزي مع دعم RTL">EN/AR with RTL</div></div>
-          <div class="stat"><div class="num" data-en="Real-time" data-ar="آنية">Real-time</div><div class="label" data-en="Reverb WebSockets" data-ar="WebSockets عبر Reverb">Reverb WebSockets</div></div>
+          <div class="stat"><div class="num">500+</div><div class="label" data-en="weekly visitors" data-ar="زائر أسبوعياً">weekly visitors</div></div>
+          <div class="stat"><div class="num">CMS</div><div class="label" data-en="full admin control" data-ar="تحكم إداري كامل">full admin control</div></div>
         </div>
       </div>
 
       <div class="proj">
         <div class="proj-index serif">02</div>
         <div>
-          <h3 class="proj-title"><a href="https://drama.gov.sy" target="_blank" rel="noopener">drama.gov.sy</a> — <span data-en="Institutional CMS Platform" data-ar="منصة إدارة محتوى مؤسسية">Institutional CMS Platform</span></h3>
-          <p class="proj-desc" data-en="A fully dynamic Content Management System with a decoupled admin dashboard for a Syrian cultural institution. Non-technical staff can independently update all site content — text, images, pages — without touching code. Includes role-based access for internal staff, media upload/optimization pipelines, and content version management." data-ar="نظام إدارة محتوى ديناميكي بالكامل مع لوحة تحكم إدارية منفصلة لمؤسسة ثقافية سورية. يمكن للموظفين غير التقنيين تحديث كل محتوى الموقع — نصوص وصور وصفحات — دون الحاجة للتعامل مع الكود. يتضمن صلاحيات وصول مبنية على الأدوار للموظفين الداخليين، وأنظمة رفع وتحسين الوسائط، وإدارة إصدارات المحتوى.">A fully dynamic Content Management System with a decoupled admin dashboard for a Syrian cultural institution. Non-technical staff can independently update all site content — text, images, pages — without touching code. Includes role-based access for internal staff, media upload/optimization pipelines, and content version management.</p>
-          <div class="tag-row"><span class="tag">Laravel</span><span class="tag">Blade</span><span class="tag">Tailwind CSS</span><span class="tag">Admin Dashboard</span></div>
-          <a class="proj-live" href="https://drama.gov.sy" target="_blank" rel="noopener" data-en="Live: drama.gov.sy ↗" data-ar="الموقع: drama.gov.sy ↗">Live: drama.gov.sy ↗</a>
-        </div>
-        <div class="proj-meta">
-          <div class="stat"><div class="num">500+</div><div class="label" data-en="weekly visitors" data-ar="زائر أسبوعياً">weekly visitors</div></div>
-        </div>
-      </div>
-
-      <div class="proj">
-        <div class="proj-index serif">03</div>
-        <div>
-          <h3 class="proj-title" data-en="light-promo.com — Promotional Site" data-ar="light-promo.com — موقع ترويجي">light-promo.com — Promotional Site</h3>
-          <p class="proj-desc" data-en="An independent freelance build, owned end-to-end — architecture, backend, front end, and hosting, with no team behind it." data-ar="مشروع حر طوّرته بشكل مستقل بالكامل — من التصميم المعماري إلى الخلفية والواجهة الأمامية والاستضافة، دون فريق دعم.">An independent freelance build, owned end-to-end — architecture, backend, front end, and hosting, with no team behind it.</p>
-          <div class="tag-row"><span class="tag">Laravel</span><span class="tag">Bootstrap</span></div>
-          <a class="proj-live" href="https://light-promo.com" target="_blank" rel="noopener" data-en="Live: light-promo.com ↗" data-ar="الموقع: light-promo.com ↗">Live: light-promo.com ↗</a>
+          <h3 class="proj-title"><a href="https://light-promo.com" target="_blank" rel="noopener">light-promo.com</a> — <span data-en="Promotional Site" data-ar="موقع ترويجي">Promotional Site</span></h3>
+          <p class="proj-desc" data-en="An independent freelance build, owned end-to-end — architecture, backend, front end, and hosting, with no team behind it. Supports 200+ daily visits." data-ar="مشروع حر طوّرته بشكل مستقل بالكامل — من التصميم المعماري إلى الخلفية والواجهة الأمامية والاستضافة، دون فريق دعم. يدعم 200+ زيارة يومياً.">An independent freelance build, owned end-to-end — architecture, backend, front end, and hosting, with no team behind it. Supports 200+ daily visits.</p>
+          <div class="tag-row"><span class="tag">Laravel</span><span class="tag">Bootstrap</span><span class="tag">MySQL</span></div>
         </div>
         <div class="proj-meta">
           <div class="stat"><div class="num">200+</div><div class="label" data-en="daily visits" data-ar="زيارة يومياً">daily visits</div></div>
@@ -317,11 +298,11 @@
       </div>
 
       <div class="proj">
-        <div class="proj-index serif">04</div>
+        <div class="proj-index serif">03</div>
         <div>
-          <h3 class="proj-title" data-en="Contest Game — Interactive Game Platform" data-ar="منصة ألعاب تفاعلية">Contest Game — Interactive Game Platform</h3>
-          <p class="proj-desc" data-en="Real-time interactive game logic and session handling for a live contest platform, scaling reliably under concurrent load without session collisions." data-ar="منطق لعبة تفاعلية بالوقت الفعلي وإدارة جلسات لمنصة مسابقات حية، مع أداء موثوق تحت الحمل المتزامن دون أي تعارض في الجلسات.">Real-time interactive game logic and session handling for a live contest platform, scaling reliably under concurrent load without session collisions.</p>
-          <div class="tag-row"><span class="tag">JavaScript</span><span class="tag">Laravel</span><span class="tag">Session Management</span></div>
+          <h3 class="proj-title" data-en="Contest Game — Interactive Platform" data-ar="منصة ألعاب تفاعلية">Contest Game — Interactive Platform</h3>
+          <p class="proj-desc" data-en="Real-time session-handling engine for a live interactive contest platform, load-tested with zero session collisions or data loss. Scaled reliably to 150 concurrent users." data-ar="محرك إدارة جلسات بالوقت الفعلي لمنصة مسابقات تفاعلية حية، تم اختباره تحت الحمل دون أي تعارض في الجلسات أو فقدان بيانات. توسع بشكل موثوق إلى 150 مستخدم متزامن.">Real-time session-handling engine for a live interactive contest platform, load-tested with zero session collisions or data loss. Scaled reliably to 150 concurrent users.</p>
+          <div class="tag-row"><span class="tag">Laravel</span><span class="tag">JavaScript</span><span class="tag">Sessions</span></div>
         </div>
         <div class="proj-meta">
           <div class="stat"><div class="num">150</div><div class="label" data-en="concurrent users" data-ar="مستخدماً متزامناً">concurrent users</div></div>
@@ -329,19 +310,7 @@
       </div>
 
       <div class="proj">
-        <div class="proj-index serif">05</div>
-        <div>
-          <h3 class="proj-title" data-en="Full-Stack E-Commerce Platform" data-ar="منصة تجارة إلكترونية متكاملة">Full-Stack E-Commerce Platform</h3>
-          <p class="proj-desc" data-en="A personal full-stack e-commerce app built with React (Vite) and Express, featuring JWT authentication, PostgreSQL-backed product and category data, and Cart/Wishlist state via Context API. Resolved CORS and mixed-content issues in production, deployed via Docker/Railpack on Railway." data-ar="تطبيق تجارة إلكترونية شخصي متكامل، بُني باستخدام React (Vite) وExpress، يتضمن مصادقة JWT، وبيانات منتجات وفئات مدعومة بـ PostgreSQL، وحالة سلة التسوق/قائمة الرغبات عبر Context API. تم حل مشاكل CORS والمحتوى المختلط في بيئة الإنتاج، والنشر عبر Docker/Railpack على Railway.">A personal full-stack e-commerce app built with React (Vite) and Express, featuring JWT authentication, PostgreSQL-backed product and category data, and Cart/Wishlist state via Context API. Resolved CORS and mixed-content issues in production, deployed via Docker/Railpack on Railway.</p>
-          <div class="tag-row"><span class="tag">React (Vite)</span><span class="tag">Express</span><span class="tag">JWT</span><span class="tag">PostgreSQL</span></div>
-        </div>
-        <div class="proj-meta">
-          <div class="stat"><div class="num" data-en="Full-Stack" data-ar="متكامل">Full-Stack</div><div class="label" data-en="React + Express" data-ar="React + Express">React + Express</div></div>
-        </div>
-      </div>
-
-      <div class="proj">
-        <div class="proj-index serif">06</div>
+        <div class="proj-index serif">04</div>
         <div>
           <h3 class="proj-title" data-en="Masarat — Bus Route Management" data-ar="مسارات — نظام إدارة خطوط الحافلات">Masarat — Bus Route Management</h3>
           <p class="proj-desc" data-en="Graduation project: a full CRUD system for tracking transit routes and schedules, built with Eloquent ORM over a clean relational schema." data-ar="مشروع التخرج: نظام CRUD كامل لتتبع خطوط النقل ومواعيدها، مبني باستخدام Eloquent ORM على قاعدة بيانات علائقية نظيفة.">Graduation project: a full CRUD system for tracking transit routes and schedules, built with Eloquent ORM over a clean relational schema.</p>
@@ -361,34 +330,34 @@
       <h2 class="section-title serif" data-en="Skills" data-ar="المهارات">Skills</h2>
       <div class="skill-groups">
         <div class="skill-group">
-          <h3 data-en="Front-End" data-ar="الواجهة الأمامية">Front-End</h3>
-          <div class="pill-row">
-            <span class="pill">JavaScript (ES6+)</span><span class="pill">TypeScript</span><span class="pill">React</span><span class="pill">Redux Toolkit</span><span class="pill">React Router</span><span class="pill">HTML5</span><span class="pill">CSS3</span><span class="pill">Tailwind CSS</span><span class="pill">Bootstrap</span><span class="pill">Blade</span>
-          </div>
-        </div>
-        <div class="skill-group">
           <h3 data-en="Back-End" data-ar="الواجهة الخلفية">Back-End</h3>
           <div class="pill-row">
-            <span class="pill">Node.js</span><span class="pill">Express</span><span class="pill">PHP</span><span class="pill">Laravel 13</span><span class="pill">RESTful APIs</span><span class="pill">JWT Auth</span><span class="pill">RBAC (Spatie)</span><span class="pill">WebSockets (Reverb)</span><span class="pill">MVC</span><span class="pill" data-en="Payment Webhooks (HMAC)" data-ar="Webhooks الدفع (HMAC)">Payment Webhooks (HMAC)</span>
+            <span class="pill">PHP</span><span class="pill">Laravel</span><span class="pill">Eloquent ORM</span><span class="pill">MVC</span><span class="pill">RESTful APIs</span>
           </div>
         </div>
         <div class="skill-group">
-          <h3 data-en="Databases" data-ar="قواعد البيانات">Databases</h3>
+          <h3 data-en="Front-End" data-ar="الواجهة الأمامية">Front-End</h3>
           <div class="pill-row">
-            <span class="pill">PostgreSQL</span><span class="pill">MySQL</span><span class="pill">SQL</span><span class="pill">Eloquent ORM</span><span class="pill" data-en="Migrations &amp; Seeding" data-ar="Migrations وSeeding">Migrations &amp; Seeding</span><span class="pill" data-en="CRUD Design" data-ar="تصميم CRUD">CRUD Design</span>
+            <span class="pill">HTML5</span><span class="pill">CSS3</span><span class="pill">JavaScript</span><span class="pill">Bootstrap</span><span class="pill">Tailwind CSS</span>
           </div>
         </div>
         <div class="skill-group">
-          <h3 data-en="DevOps &amp; Tools" data-ar="الأدوات والنشر">DevOps &amp; Tools</h3>
+          <h3 data-en="Data" data-ar="البيانات">Data</h3>
           <div class="pill-row">
-            <span class="pill">Docker</span><span class="pill">Nginx</span><span class="pill" data-en="CI/CD (GitHub Actions)" data-ar="CI/CD (GitHub Actions)">CI/CD (GitHub Actions)</span><span class="pill">Git</span><span class="pill">Railway</span><span class="pill">Vite</span><span class="pill">Composer</span><span class="pill" data-en="Code Review" data-ar="مراجعة الكود">Code Review</span>
+            <span class="pill">MySQL</span><span class="pill" data-en="Migrations &amp; Seeding" data-ar="Migrations وSeeding">Migrations &amp; Seeding</span><span class="pill" data-en="CRUD Design" data-ar="تصميم CRUD">CRUD Design</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <h3 data-en="Tools &amp; Practice" data-ar="الأدوات والممارسات">Tools &amp; Practice</h3>
+          <div class="pill-row">
+            <span class="pill">Git</span><span class="pill">Composer</span><span class="pill" data-en="Debugging" data-ar="تصحيح الأخطاء">Debugging</span><span class="pill" data-en="Code Review" data-ar="مراجعة الكود">Code Review</span>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- EDUCATION & CERTIFICATIONS -->
+  <!-- EDUCATION -->
   <section>
     <div class="wrap">
       <div class="section-num">05</div>
@@ -403,7 +372,7 @@
       </div>
       <div class="edu-item">
         <h3 data-en="Master Full-Stack Web Development with Laravel &amp; PHP" data-ar="Master Full-Stack Web Development with Laravel &amp; PHP">Master Full-Stack Web Development with Laravel &amp; PHP</h3>
-        <p><span data-en="Board Infinity / Coursera — July 2026 · " data-ar="Board Infinity / Coursera — يوليو 2026 · ">Board Infinity / Coursera — July 2026 · </span><a class="verify-link" href="https://www.coursera.org/account/accomplishments/verify/AU3BQTDXSM77" target="_blank" rel="noopener" data-en="Verify ↗" data-ar="التحقق ↗">Verify ↗</a></p>
+        <p><a href="https://www.coursera.org/account/accomplishments/verify/AU3BQTDXSM77" target="_blank" rel="noopener">Board Infinity / Coursera — July 2026 | Verify ↗</a></p>
       </div>
     </div>
   </section>
@@ -413,9 +382,62 @@
     <div class="wrap">
       <div class="section-num">06</div>
       <h2 class="contact-hero serif" data-en="Let's build something." data-ar="لنبنِ شيئاً معاً.">Let's build something.</h2>
-      <p class="contact-note" data-en="For US remote roles, email or LinkedIn is the fastest way to reach me." data-ar="بالنسبة للوظائف عن بُعد في الولايات المتحدة، البريد الإلكتروني أو LinkedIn هما أسرع وسيلة للتواصل معي.">For US remote roles, email or LinkedIn is the fastest way to reach me.</p>
       <div class="contact-grid">
         <a class="contact-card" href="mailto:serenesheikh23@gmail.com">
-          <span class="k" data-en="Email" data-ar="البريد الإلكتروني">Email</span><span class="v">serenesheikh23@gmail.com</span>
+          <span class="k" data-en="Email" data-ar="البريد الإلكتروني">Email</span>
+          <span class="v">serenesheikh23@gmail.com</span>
         </a>
-        <a class="contact-card" href="https://www.linkedin.com/in/serene-she
+        <a class="contact-card" href="https://linkedin.com/in/serenesheikhalard" target="_blank" rel="noopener">
+          <span class="k">LinkedIn</span>
+          <span class="v">/in/serenesheikhalard</span>
+        </a>
+        <a class="contact-card" href="Serene_Sheikhalard_Resume.pdf" download>
+          <span class="k" data-en="Resume" data-ar="السيرة الذاتية">Resume</span>
+          <span class="v" data-en="Download PDF" data-ar="تحميل PDF">Download PDF</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <footer data-en="Damascus, Syria" data-ar="دمشق، سوريا">Damascus, Syria</footer>
+
+<script>
+function setLang(lang){
+  var body = document.getElementById('bodyRoot');
+  var html = document.getElementById('htmlRoot');
+  
+  if (lang === 'ar') {
+    body.className = 'ar';
+    html.setAttribute('lang', 'ar');
+  } else {
+    body.className = '';
+    html.setAttribute('lang', 'en');
+  }
+  
+  // Update all elements with data-en/data-ar attributes
+  var elements = document.querySelectorAll('[data-en]');
+  for (var i = 0; i < elements.length; i++) {
+    var el = elements[i];
+    if (lang === 'ar' && el.getAttribute('data-ar')) {
+      el.innerHTML = el.getAttribute('data-ar');
+    } else if (lang === 'en' && el.getAttribute('data-en')) {
+      el.innerHTML = el.getAttribute('data-en');
+    }
+  }
+  
+  // Update active class on buttons
+  var buttons = document.querySelectorAll('.langbar button');
+  for (var i = 0; i < buttons.length; i++) {
+    var btn = buttons[i];
+    var btnLang = btn.getAttribute('data-lang');
+    if (btnLang === lang) {
+      btn.classList.add('active');
+    } else {
+      btn.classList.remove('active');
+    }
+  }
+}
+</script>
+
+</body>
+</html>
