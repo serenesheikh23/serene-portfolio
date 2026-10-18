@@ -11,7 +11,7 @@ const PROJECTS = [
     challenge: "Processing crypto payment webhooks securely, since providers can send the same event more than once.",
     solution: "Verified every webhook with HMAC-SHA256 (USDT) and HMAC-SHA512 (Binance Pay) and made processing idempotent, with PHPUnit tests covering it.",
     result: "A repeated webhook is processed once, so duplicate transactions can't be created, and automated tests protect that behavior.",
-    link: ""
+    link: "", image: "/marketly.jpg"
   },
   {
     id: "glowpop", title: "Glow Pop", role: "Luxury E-Commerce", tags: "React, Redux, Laravel, Sanctum", status: "Launching Soon",
@@ -19,7 +19,7 @@ const PROJECTS = [
     challenge: "A complete beauty store in Arabic and English, with a full back office.",
     solution: "React and Redux Toolkit front end with a Laravel API secured by Sanctum, Sham Cash payments, and an admin dashboard.",
     result: "Customers browse, search, save to a wishlist, and check out. Staff manage products, orders, inventory, and users in one place.",
-    link: ""
+    link: "", image: "/glowpop.jpg"
   },
   {
     id: "codecraft", title: "Code Craft", role: "Agency CMS", tags: "Next.js, Prisma, Turso", status: "Live",
@@ -27,7 +27,7 @@ const PROJECTS = [
     challenge: "Letting an agency update its own website without a developer.",
     solution: "An admin CMS with JWT role-based login (NextAuth.js), 12 data models, 56 API handlers, Resend email, and Vitest tests.",
     result: "Services, projects, testimonials, and legal pages are editable from a secured admin panel, and enquiries arrive by email.",
-    link: "https://codecraft.pxxlspace.cv"
+    link: "https://codecraft.pxxlspace.cv", image: "/codecraft.jpg"
   },
   {
     id: "drama", title: "drama.gov.sy", role: "Institutional CMS", tags: "Laravel, Blade, Tailwind", status: "Live",
@@ -35,7 +35,7 @@ const PROJECTS = [
     challenge: "Letting authorized staff of a government institution manage content safely.",
     solution: "A Laravel CMS with a decoupled admin dashboard and role-based access control, built at Mad Fox.",
     result: "A live institutional website where content is managed by role.",
-    link: "https://drama.gov.sy/"
+    link: "https://drama.gov.sy/", image: "/drama.jpg"
   },
   {
     id: "ronaris", title: "Ronaris Taxi", role: "Multilingual Site", tags: "HTML, CSS, JavaScript", status: "Live",
@@ -43,7 +43,7 @@ const PROJECTS = [
     challenge: "Letting Bonn customers book quickly in German, English, or Arabic.",
     solution: "A JavaScript ride-request form with phone and WhatsApp contact options.",
     result: "A live site with three easy ways to book: form, call, or WhatsApp.",
-    link: "https://www.ronaris-taxi.de/"
+    link: "https://www.ronaris-taxi.de/", image: "/ronaris.jpg"
   },
   {
     id: "hpmt", title: "HPMT Distribution", role: "Corporate Site", tags: "HTML, CSS, JavaScript", status: "Live",
@@ -51,7 +51,7 @@ const PROJECTS = [
     challenge: "Presenting an HVAC catalog clearly to English and French customers.",
     solution: "A bilingual site with light and dark modes, a product catalog, and testimonials.",
     result: "A live site where customers browse in their language and contact the team.",
-    link: "https://hpmtdistribution.com/"
+    link: "https://hpmtdistribution.com/", image: "/hpmt.jpg"
   },
   {
     id: "light", title: "Light Promo", role: "Freelance Build", tags: "Laravel, Bootstrap", status: "Live",
@@ -59,7 +59,7 @@ const PROJECTS = [
     challenge: "Getting a client's promotional website designed and online.",
     solution: "Designed, built, and launched independently with Laravel and Bootstrap.",
     result: "A live site, delivered from concept to launch.",
-    link: "https://light-promo.com/"
+    link: "https://light-promo.com/", image: "/light.jpg"
   }
 ];
 
@@ -95,7 +95,6 @@ const ScrambleText = ({ text }: { text: string }) => {
   return <span aria-label={text}>{displayText}</span>;
 };
 
-// --- ISOLATED MODAL COMPONENT FOR SCROLL PROGRESS ---
 const ProjectModal = ({ project, onClose }: { project: any, onClose: () => void }) => {
   const modalRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({ container: modalRef });
@@ -165,13 +164,11 @@ export default function Home() {
   const smoothVelocity = useSpring(scrollVelocity, { damping: 50, stiffness: 400 });
   const skewY = useTransform(smoothVelocity, [-2000, 2000], [-4, 4]);
 
-  // Faster Preloader (800ms)
   useEffect(() => {
     const timer = setTimeout(() => setIsRevealed(true), 800);
     return () => clearTimeout(timer);
   }, []);
 
-  // Modal Scroll Lock
   useEffect(() => {
     if (selectedProject) {
       document.body.style.overflow = "hidden";
@@ -181,7 +178,6 @@ export default function Home() {
     return () => { document.body.style.overflow = "unset"; };
   }, [selectedProject]);
 
-  // Filter Projects based on clicked skill
   const filteredProjects = activeSkill
     ? PROJECTS.filter((p) => p.tags.toLowerCase().includes(activeSkill.toLowerCase()))
     : PROJECTS;
@@ -189,7 +185,6 @@ export default function Home() {
   return (
     <main className="relative min-h-screen bg-lux-bg selection:bg-lux-gold selection:text-black overflow-hidden font-sans">
 
-      {/* Faster Cinematic Curtain Reveal */}
       <AnimatePresence>
         {!isRevealed && (
           <>
@@ -243,7 +238,35 @@ export default function Home() {
           </motion.div>
         </section>
 
-        {/* INTERACTIVE MARQUEE FILTER */}
+        <section id="about" className="relative z-10 max-w-5xl mx-auto px-4 py-24 md:py-48">
+          <div className="flex flex-col gap-8 md:flex-row md:gap-12">
+            <div className="md:w-1/3">
+              <h2 className="text-[10px] tracking-[0.3em] uppercase text-lux-gold mb-2 md:mb-4">About</h2>
+              <h3 className="font-serif text-3xl md:text-4xl">Ideas in.<br/>Products out.</h3>
+            </div>
+            <div className="md:w-2/3">
+              <p className="text-xl md:text-4xl leading-relaxed font-light mb-6 md:mb-8 text-lux-text">
+                I deliver features end to end: React front ends, Laravel APIs, admin dashboards, and Docker deployment. I focus on role-based access control, secure payment webhooks, and real-time updates, and I use AI-assisted tools while owning the architecture and quality of every project.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <section className="relative z-10 py-16 md:py-24 border-t border-lux-border">
+          <div className="max-w-7xl mx-auto px-4 mb-8 md:mb-16">
+            <h2 className="font-serif text-3xl md:text-5xl text-lux-text">Engineering <span className="italic text-lux-gold">Practices</span></h2>
+          </div>
+          <div className="flex overflow-x-auto snap-x snap-mandatory gap-4 px-4 pb-8 hide-scrollbar md:grid md:grid-cols-2 lg:grid-cols-4 md:gap-6 md:overflow-visible md:px-6 md:max-w-7xl md:mx-auto">
+            {PRACTICES.map((practice, i) => (
+              <div key={i} className="snap-center shrink-0 w-[80vw] sm:w-[45vw] md:w-auto bg-lux-card border border-lux-border p-6 md:p-8 rounded-xl">
+                <h3 className="text-lux-gold text-[10px] md:text-sm tracking-widest uppercase mb-3 md:mb-4">{practice.title}</h3>
+                <p className="text-lux-muted text-sm leading-relaxed">{practice.text}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* MARQUEE MOVED HERE - RIGHT BEFORE WORK */}
         <div className="relative z-10 border-y border-lux-border bg-black/50 backdrop-blur-sm">
           <div className="text-center pt-6 pb-2">
             <p className="text-[10px] md:text-xs uppercase tracking-[0.2em] text-lux-muted">
@@ -273,34 +296,6 @@ export default function Home() {
             </div>
           </div>
         </div>
-
-        <section id="about" className="relative z-10 max-w-5xl mx-auto px-4 py-24 md:py-48">
-          <div className="flex flex-col gap-8 md:flex-row md:gap-12">
-            <div className="md:w-1/3">
-              <h2 className="text-[10px] tracking-[0.3em] uppercase text-lux-gold mb-2 md:mb-4">About</h2>
-              <h3 className="font-serif text-3xl md:text-4xl">Ideas in.<br/>Products out.</h3>
-            </div>
-            <div className="md:w-2/3">
-              <p className="text-xl md:text-4xl leading-relaxed font-light mb-6 md:mb-8 text-lux-text">
-                I deliver features end to end: React front ends, Laravel APIs, admin dashboards, and Docker deployment. I focus on role-based access control, secure payment webhooks, and real-time updates, and I use AI-assisted tools while owning the architecture and quality of every project.
-              </p>
-            </div>
-          </div>
-        </section>
-
-        <section className="relative z-10 py-16 md:py-24 border-t border-lux-border">
-          <div className="max-w-7xl mx-auto px-4 mb-8 md:mb-16">
-            <h2 className="font-serif text-3xl md:text-5xl text-lux-text">Engineering <span className="italic text-lux-gold">Practices</span></h2>
-          </div>
-          <div className="flex overflow-x-auto snap-x snap-mandatory gap-4 px-4 pb-8 hide-scrollbar md:grid md:grid-cols-2 lg:grid-cols-4 md:gap-6 md:overflow-visible md:px-6 md:max-w-7xl md:mx-auto">
-            {PRACTICES.map((practice, i) => (
-              <div key={i} className="snap-center shrink-0 w-[80vw] sm:w-[45vw] md:w-auto bg-lux-card border border-lux-border p-6 md:p-8 rounded-xl">
-                <h3 className="text-lux-gold text-[10px] md:text-sm tracking-widest uppercase mb-3 md:mb-4">{practice.title}</h3>
-                <p className="text-lux-muted text-sm leading-relaxed">{practice.text}</p>
-              </div>
-            ))}
-          </div>
-        </section>
 
         <section id="work" className="relative z-10 max-w-7xl mx-auto px-4 py-16 md:py-24 border-t border-lux-border">
           <div className="mb-12 md:mb-20 flex flex-col md:flex-row justify-between items-start md:items-end gap-2">
@@ -341,27 +336,39 @@ export default function Home() {
                   layoutId={`card-${project.id}`}
                   onClick={() => setSelectedProject(project)}
                   whileTap={{ scale: 0.98 }}
-                  className="group relative bg-lux-card border border-lux-border p-6 md:p-12 rounded-2xl cursor-pointer overflow-hidden flex flex-col justify-between min-h-[45vh] md:min-h-[400px] shadow-2xl"
+                  className="group relative bg-lux-card border border-lux-border rounded-2xl cursor-pointer overflow-hidden flex flex-col justify-between min-h-[45vh] md:min-h-[400px] shadow-2xl"
                 >
-                  <div className="relative z-10">
-                    <div className="flex justify-between items-start mb-6 md:mb-12">
-                      <motion.span layoutId={`role-${project.id}`} className="text-[10px] md:text-xs tracking-widest uppercase text-lux-gold">{project.role}</motion.span>
-                      <span className="flex items-center gap-1.5 text-[9px] md:text-[10px] tracking-widest uppercase border border-lux-border px-2.5 py-1 rounded-full text-lux-muted">
-                        <span className={`w-1.5 h-1.5 rounded-full ${project.status === "Live" ? "bg-green-500 animate-pulse" : "bg-lux-gold animate-pulse"}`} />
-                        {project.status}
-                      </span>
+                  {/* Background Image & Gradient */}
+                  {project.image && (
+                    <div className="absolute inset-0 z-0">
+                      <img src={project.image} alt={project.title} className="w-full h-full object-cover opacity-30 group-hover:opacity-50 group-hover:scale-105 transition-all duration-700" />
+                      <div className="absolute inset-0 bg-gradient-to-t from-lux-bg via-lux-bg/80 to-transparent" />
                     </div>
-                    <motion.h3 layoutId={`title-${project.id}`} className="font-serif text-3xl md:text-5xl mb-3 md:mb-4 text-lux-text">{project.title}</motion.h3>
-                    <motion.p layoutId={`desc-${project.id}`} className="text-lux-muted text-sm md:text-base leading-relaxed mb-6 md:mb-8 max-w-2xl">{project.desc}</motion.p>
-                  </div>
-                  <div className="relative z-10 flex items-end justify-between mt-auto">
-                    <div className="text-[10px] md:text-xs text-lux-muted flex flex-wrap gap-2">
-                      {project.tags.split(", ").map((tag, j) => (
-                        <span key={j} className="bg-black/30 px-2 py-1 md:px-3 rounded-full border border-lux-border/50">{tag}</span>
-                      ))}
+                  )}
+
+                  {/* Content Wrapper */}
+                  <div className="relative z-10 p-6 md:p-12 flex flex-col justify-between h-full w-full">
+                    <div>
+                      <div className="flex justify-between items-start mb-6 md:mb-12">
+                        <motion.span layoutId={`role-${project.id}`} className="text-[10px] md:text-xs tracking-widest uppercase text-lux-gold">{project.role}</motion.span>
+                        <span className="flex items-center gap-1.5 text-[9px] md:text-[10px] tracking-widest uppercase border border-lux-border px-2.5 py-1 rounded-full text-lux-muted bg-black/50 backdrop-blur-sm">
+                          <span className={`w-1.5 h-1.5 rounded-full ${project.status === "Live" ? "bg-green-500 animate-pulse" : "bg-lux-gold animate-pulse"}`} />
+                          {project.status}
+                        </span>
+                      </div>
+                      <motion.h3 layoutId={`title-${project.id}`} className="font-serif text-3xl md:text-5xl mb-3 md:mb-4 text-lux-text">{project.title}</motion.h3>
+                      <motion.p layoutId={`desc-${project.id}`} className="text-lux-muted text-sm md:text-base leading-relaxed mb-6 md:mb-8 max-w-2xl">{project.desc}</motion.p>
                     </div>
-                    <div className="w-10 h-10 md:w-12 md:h-12 rounded-full border border-lux-border flex items-center justify-center bg-black/50">
-                      <ArrowUpRight className="w-4 h-4 md:w-5 md:h-5 text-lux-gold" />
+                    
+                    <div className="flex items-end justify-between mt-auto pt-6">
+                      <div className="text-[10px] md:text-xs text-lux-muted flex flex-wrap gap-2">
+                        {project.tags.split(", ").map((tag, j) => (
+                          <span key={j} className="bg-black/50 backdrop-blur-sm px-2 py-1 md:px-3 rounded-full border border-lux-border/50">{tag}</span>
+                        ))}
+                      </div>
+                      <div className="w-10 h-10 md:w-12 md:h-12 rounded-full border border-lux-border flex items-center justify-center bg-black/50 backdrop-blur-sm">
+                        <ArrowUpRight className="w-4 h-4 md:w-5 md:h-5 text-lux-gold" />
+                      </div>
                     </div>
                   </div>
                 </motion.div>
