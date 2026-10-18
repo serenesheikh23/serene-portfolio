@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, useScroll, useVelocity, useSpring, AnimatePresence, useTransform, useMotionValue, useAnimationFrame } from "framer-motion";
+import { motion, useScroll, useVelocity, useSpring, AnimatePresence, useTransform } from "framer-motion";
 import { ArrowUpRight, Mail, X, Download } from "lucide-react";
 import { useEffect, useState, useRef } from "react";
 
@@ -95,44 +95,23 @@ const ScrambleText = ({ text }: { text: string }) => {
   return <span aria-label={text}>{displayText}</span>;
 };
 
-// --- VELOCITY MARQUEE COMPONENT ---
-const wrap = (min: number, max: number, v: number) => {
-  const rangeSize = max - min;
-  return ((((v - min) % rangeSize) + rangeSize) % rangeSize) + min;
-};
-
+// --- DRAGGABLE SKILLS MARQUEE ---
 const SkillsMarquee = ({ activeSkill, setActiveSkill }: { activeSkill: string | null, setActiveSkill: (s: string | null) => void }) => {
-  const baseX = useMotionValue(0);
-  const { scrollY } = useScroll();
-  const scrollVelocity = useVelocity(scrollY);
-  const smoothVelocity = useSpring(scrollVelocity, { damping: 50, stiffness: 400 });
-  const velocityFactor = useTransform(smoothVelocity, [0, 1000], [0, 5], { clamp: false });
-  const directionFactor = useRef(1);
-
-  const x = useTransform(baseX, (v) => `${wrap(-25, 0, v)}%`);
-
-  useAnimationFrame((t, delta) => {
-    let moveBy = directionFactor.current * -2 * (delta / 1000);
-
-    if (velocityFactor.get() < 0) {
-      directionFactor.current = -1;
-    } else if (velocityFactor.get() > 0) {
-      directionFactor.current = 1;
-    }
-
-    moveBy += directionFactor.current * moveBy * velocityFactor.get();
-    baseX.set(baseX.get() + moveBy);
-  });
-
   return (
-    <div className="relative z-10 border-y border-lux-border bg-black/50 backdrop-blur-sm">
+    <div className="relative z-10 border-y border-lux-border bg-black/50 backdrop-blur-sm overflow-hidden">
       <div className="text-center pt-6 pb-2">
         <p className="text-[10px] md:text-xs uppercase tracking-[0.2em] text-lux-muted">
-          Click any skill below to filter the work
+          Drag to explore or click any skill to filter
         </p>
       </div>
-      <div className="py-4 md:py-6 overflow-hidden" aria-label="Filter projects by skill">
-        <motion.div className="flex whitespace-nowrap text-xl md:text-3xl font-serif italic text-lux-muted" style={{ x }}>
+      <div className="py-4 md:py-6 overflow-hidden cursor-grab active:cursor-grabbing" aria-label="Filter projects by skill">
+        <motion.div 
+          drag="x" 
+          dragConstraints={{ left: -2000, right: 2000 }} 
+          dragElastic={0.1}
+          dragTransition={{ power: 0, timeConstant: 200 }}
+          className="flex whitespace-nowrap text-xl md:text-3xl font-serif italic text-lux-muted"
+        >
           {[...Array(4)].map((_, i) => (
             <div key={i} className="flex gap-8 md:gap-12 items-center px-4 md:px-6">
               {SKILLS.map((skill, j) => (
@@ -244,7 +223,7 @@ export default function Home() {
     : PROJECTS;
 
   return (
-    <main className="relative min-h-screen bg-lux-bg selection:bg-lux-gold selection:text-black overflow-hidden font-sans">
+    <main className="relative min-h-screen bg-lux-bg selection:bg-lux-gold selection:text-black font-sans">
 
       <AnimatePresence>
         {!isRevealed && (
@@ -255,19 +234,21 @@ export default function Home() {
         )}
       </AnimatePresence>
 
-      <motion.div style={{ skewY }} className="origin-center">
+      {/* NAVBAR MOVED OUTSIDE THE SKEW WRAPPER TO STAY FIXED */}
+      <nav className="fixed top-0 w-full flex justify-between items-center px-4 py-4 md:px-12 md:py-6 text-[10px] md:text-xs tracking-[0.2em] uppercase z-40 bg-lux-bg/80 backdrop-blur-md border-b border-lux-border/50">
+        <a href="#" className="font-serif text-lg font-bold text-lux-gold tracking-normal">S.S.</a>
+        <div className="flex gap-4 md:gap-8 items-center">
+          <motion.a whileTap={{ scale: 0.9 }} href="#work" className="text-lux-text hover:text-lux-gold">Work</motion.a>
+          <motion.a whileTap={{ scale: 0.9 }} href="#about" className="text-lux-text hover:text-lux-gold">About</motion.a>
+          <motion.a whileTap={{ scale: 0.9 }} href="#contact" className="text-lux-text hover:text-lux-gold">Contact</motion.a>
+          <motion.a whileTap={{ scale: 0.9 }} href="/serene-portfolio/Serene_Sheikhalard_Resume.pdf" download className="hidden md:flex items-center gap-1 text-lux-gold hover:text-lux-gold-light">
+            <Download className="w-3 h-3" /> Resume
+          </motion.a>
+        </div>
+      </nav>
 
-        <nav className="fixed top-0 w-full flex justify-between items-center px-4 py-4 md:px-12 md:py-6 text-[10px] md:text-xs tracking-[0.2em] uppercase z-40 bg-lux-bg/80 backdrop-blur-md border-b border-lux-border/50">
-          <a href="#" className="font-serif text-lg font-bold text-lux-gold tracking-normal">S.S.</a>
-          <div className="flex gap-4 md:gap-8 items-center">
-            <motion.a whileTap={{ scale: 0.9 }} href="#work" className="text-lux-text hover:text-lux-gold">Work</motion.a>
-            <motion.a whileTap={{ scale: 0.9 }} href="#about" className="text-lux-text hover:text-lux-gold">About</motion.a>
-            <motion.a whileTap={{ scale: 0.9 }} href="#contact" className="text-lux-text hover:text-lux-gold">Contact</motion.a>
-            <motion.a whileTap={{ scale: 0.9 }} href="/serene-portfolio/Serene_Sheikhalard_Resume.pdf" download className="hidden md:flex items-center gap-1 text-lux-gold hover:text-lux-gold-light">
-              <Download className="w-3 h-3" /> Resume
-            </motion.a>
-          </div>
-        </nav>
+      {/* SKEW WRAPPER FOR MAIN CONTENT */}
+      <motion.div style={{ skewY }} className="origin-center overflow-hidden pt-20">
 
         <section className="relative z-10 min-h-[100dvh] flex flex-col justify-center max-w-7xl mx-auto px-4 pt-20">
           <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1.2 }} className="text-lux-gold text-[10px] tracking-[0.4em] uppercase mb-4 md:mb-8">
@@ -327,7 +308,7 @@ export default function Home() {
           </div>
         </section>
 
-        {/* VELOCITY MARQUEE */}
+        {/* DRAGGABLE MARQUEE */}
         <SkillsMarquee activeSkill={activeSkill} setActiveSkill={setActiveSkill} />
 
         <section id="work" className="relative z-10 max-w-7xl mx-auto px-4 py-16 md:py-24 border-t border-lux-border">
