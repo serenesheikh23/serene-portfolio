@@ -1,40 +1,30 @@
 # Serene Sheikhalard | Portfolio
 
-A luxury, dark-themed personal portfolio website built with Next.js 15, React 19, and TypeScript. 
+A luxury, dark-themed personal portfolio built with **Next.js 15 (App Router)**, **React 19**, **TypeScript**, **Tailwind CSS**, and **Framer Motion**.
 
-## Live Demo
+## Live Site
+
 [https://serenesheikh23.github.io/serene-portfolio/](https://serenesheikh23.github.io/serene-portfolio/)
 
 ## Tech Stack
-- **Framework:** Next.js 15 (App Router)
-- **Language:** TypeScript
-- **Styling:** Tailwind CSS
-- **Animations:** Framer Motion
-- **Smooth Scrolling:** Lenis
-- **Icons:** Lucide React
-- **Deployment:** GitHub Pages (via GitHub Actions)
+- Next.js 15 (App Router)
+- React 19 + TypeScript
+- Tailwind CSS
+- Framer Motion
+- Lenis (smooth scrolling)
+- Lucide React (icons)
+- GitHub Pages (via GitHub Actions)
 
-## Features
-- **Dark Luxury Aesthetic:** Obsidian backgrounds with gold accents and elegant serif typography.
-- **Scroll-Triggered Animations:** Elements fade and slide into view as the user scrolls.
-- **Smooth Scrolling:** Integrated Lenis for a premium, fluid scrolling experience.
-- **Interactive UI:** Project cards with hover glows and subtle parallax effects.
-- **Fully Responsive:** Optimized for mobile, tablet, and desktop viewing.
-- **Static Export:** Configured for completely static hosting.
+## Key Features
+- Cinematic black-curtain page reveal
+- Text scramble animation on the hero name
+- Sticky stacking project cards with expanding case-study modals
+- Mobile-first tap animations and horizontal swipe carousel
+- Fully static export deployed to GitHub Pages
 
 ## Local Development
-
-1. Clone the repository:
-   git clone https://github.com/serenesheikh23/serene-portfolio.git
-   cd serene-portfolio
-
-2. Install dependencies:
-   npm install
-
-3. Run the development server:
-   npm run dev
-
-4. Open http://localhost:3000 in your browser.
-
-## Deployment
-This project is automatically built and deployed to GitHub Pages using a GitHub Actions workflow (`.github/workflows/deploy.yml`). Any push to the `main` branch triggers a new production build.
+```bash
+git clone https://github.com/serenesheikh23/serene-portfolio.git
+cd serene-portfolio
+npm install
+npm run dev
