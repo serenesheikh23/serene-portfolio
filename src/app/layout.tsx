@@ -1,3 +1,4 @@
+cat > src/app/layout.tsx << 'EOF'
 import { Manrope, Playfair_Display } from "next/font/google";
 import "./globals.css";
 import SmoothScroll from "@/components/SmoothScroll";
@@ -17,9 +18,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`${manrope.variable} ${playfair.variable} font-sans bg-lux-bg text-lux-text antialiased overflow-x-hidden selection:bg-lux-gold selection:text-lux-bg`}>
+      <body className={`${manrope.variable} ${playfair.variable} font-sans bg-[#0A0A0A] text-[#F5F5F5] antialiased overflow-x-hidden selection:bg-[#D4AF37] selection:text-black`}>
         <SmoothScroll>{children}</SmoothScroll>
       </body>
     </html>
   );
 }
+EOF
