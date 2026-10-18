@@ -109,7 +109,6 @@ const ProjectModal = ({ project, onClose }: { project: any, onClose: () => void 
           layoutId={`card-${project.id}`} 
           className="bg-lux-card border-t md:border border-lux-gold/30 w-full max-w-4xl h-[85vh] md:h-auto md:max-h-[90vh] rounded-t-3xl md:rounded-2xl pointer-events-auto relative overflow-hidden flex flex-col"
         >
-          {/* Reading Progress Bar */}
           <motion.div className="absolute top-0 left-0 right-0 h-1 bg-lux-gold z-50 origin-left" style={{ scaleX }} />
 
           <button onClick={onClose} className="absolute top-4 right-4 md:top-6 md:right-6 p-2 rounded-full bg-lux-bg border border-lux-border text-lux-muted active:text-lux-gold transition-colors z-50">
@@ -166,7 +165,7 @@ export default function Home() {
   const smoothVelocity = useSpring(scrollVelocity, { damping: 50, stiffness: 400 });
   const skewY = useTransform(smoothVelocity, [-2000, 2000], [-4, 4]);
 
-  // Preloader speed fixed (800ms)
+  // Faster Preloader (800ms)
   useEffect(() => {
     const timer = setTimeout(() => setIsRevealed(true), 800);
     return () => clearTimeout(timer);
@@ -245,21 +244,33 @@ export default function Home() {
         </section>
 
         {/* INTERACTIVE MARQUEE FILTER */}
-        <div className="relative z-10 border-y border-lux-border py-4 md:py-8 overflow-hidden bg-black/50 backdrop-blur-sm" aria-label="Filter projects by skill">
-          <div className="flex whitespace-nowrap animate-marquee hover:[animation-play-state:paused] text-xl md:text-3xl font-serif italic text-lux-muted">
-            {[...Array(4)].map((_, i) => (
-              <div key={i} className="flex gap-8 md:gap-12 items-center px-4 md:px-6">
-                {SKILLS.map((skill, j) => (
-                  <button 
-                    key={j} 
-                    onClick={() => setActiveSkill(activeSkill === skill ? null : skill)}
-                    className={`flex items-center gap-8 md:gap-12 hover:text-lux-gold transition-colors ${activeSkill === skill ? "text-lux-gold font-bold" : ""}`}
-                  >
-                    {skill} <span className="text-lux-gold text-xs md:text-sm">✦</span>
-                  </button>
-                ))}
-              </div>
-            ))}
+        <div className="relative z-10 border-y border-lux-border bg-black/50 backdrop-blur-sm">
+          <div className="text-center pt-6 pb-2">
+            <p className="text-[10px] md:text-xs uppercase tracking-[0.2em] text-lux-muted">
+              Click any skill below to filter the work
+            </p>
+          </div>
+          
+          <div className="py-4 md:py-6 overflow-hidden" aria-label="Filter projects by skill">
+            <div className="flex whitespace-nowrap animate-marquee hover:[animation-play-state:paused] text-xl md:text-3xl font-serif italic text-lux-muted">
+              {[...Array(4)].map((_, i) => (
+                <div key={i} className="flex gap-8 md:gap-12 items-center px-4 md:px-6">
+                  {SKILLS.map((skill, j) => (
+                    <button 
+                      key={j} 
+                      onClick={() => setActiveSkill(activeSkill === skill ? null : skill)}
+                      className={`flex items-center gap-8 md:gap-12 px-4 py-2 rounded-xl transition-all duration-300 ${
+                        activeSkill === skill 
+                          ? "text-lux-gold font-bold bg-lux-gold/10" 
+                          : "hover:text-lux-gold hover:bg-white/5"
+                      }`}
+                    >
+                      {skill} <span className="text-lux-gold text-xs md:text-sm">✦</span>
+                    </button>
+                  ))}
+                </div>
+              ))}
+            </div>
           </div>
         </div>
 
