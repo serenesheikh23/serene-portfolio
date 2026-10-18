@@ -1,8 +1,8 @@
 "use client";
 
 import { motion, useScroll, useTransform, useMotionValue, useSpring } from "framer-motion";
-import { ArrowUpRight, Mail, MapPin, Phone } from "lucide-react";
-import { useRef, useEffect } from "react";
+import { ArrowUpRight, Mail } from "lucide-react";
+import { useEffect } from "react";
 
 // --- Animation Variants ---
 const fadeUp = {
@@ -228,7 +228,7 @@ export default function Home() {
             <a href="https://codecraft.pxxlspace.cv" target="_blank" className="flex items-center gap-2 hover:text-lux-gold transition-colors">
               CodeCraft
             </a>
-            <a href="/Serene_Sheikhalard_Resume.pdf" download className="flex items-center gap-2 hover:text-lux-gold transition-colors">
+            <a href="/serene-portfolio/Serene_Sheikhalard_Resume.pdf" download className="flex items-center gap-2 hover:text-lux-gold transition-colors">
               Resume
             </a>
           </motion.div>
