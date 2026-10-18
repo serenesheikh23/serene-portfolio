@@ -1,4 +1,4 @@
-cat > src/app/page.tsx << 'EOF'
+
 "use client";
 
 import { motion, useScroll, useMotionValue, useVelocity, useSpring, AnimatePresence } from "framer-motion";
@@ -313,4 +313,3 @@ export default function Home() {
     </main>
   );
 }
-EOF
