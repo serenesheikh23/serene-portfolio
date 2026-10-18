@@ -8,57 +8,57 @@ const PROJECTS = [
   {
     id: "marketly", title: "Marketly", role: "Full-Stack SaaS Platform", tags: "Laravel, React, TypeScript, Docker", status: "Launching Soon",
     desc: "A multi-role marketplace with VIP tiers, RBAC, real-time updates via Reverb, crypto and regional wallet payments, HMAC-verified webhooks, and CI/CD.",
-    challenge: "Handling idempotent payment webhooks securely for crypto transactions without race conditions.",
-    solution: "Implemented HMAC-SHA256/SHA512 verification and database transaction locking.",
-    result: "Reduced payment reconciliation time by 80% and eliminated duplicate transaction errors.",
+    challenge: "Processing crypto payment webhooks securely, since providers can send the same event more than once.",
+    solution: "Verified every webhook with HMAC-SHA256 (USDT) and HMAC-SHA512 (Binance Pay) and made processing idempotent, with PHPUnit tests covering it.",
+    result: "A repeated webhook is processed once, so duplicate transactions can't be created, and automated tests protect that behavior.",
     link: ""
   },
   {
     id: "glowpop", title: "Glow Pop", role: "Luxury E-Commerce", tags: "React, Redux, Laravel, Sanctum", status: "Launching Soon",
     desc: "A luxury beauty store with cart, wishlist, checkout, Arabic and English support, and a full admin dashboard.",
-    challenge: "Building a bilingual luxury UI with complex global state (cart/wishlist) across 30+ pages.",
-    solution: "Leveraged Redux Toolkit with localized slices and CSS logical properties for seamless language switching.",
-    result: "Delivered a 100% Lighthouse accessibility score with zero layout shift.",
+    challenge: "A complete beauty store in Arabic and English, with a full back office.",
+    solution: "React and Redux Toolkit front end with a Laravel API secured by Sanctum, Sham Cash payments, and an admin dashboard.",
+    result: "Customers browse, search, save to a wishlist, and check out. Staff manage products, orders, inventory, and users in one place.",
     link: ""
   },
   {
     id: "codecraft", title: "Code Craft", role: "Agency CMS", tags: "Next.js, Prisma, Turso", status: "Live",
     desc: "An agency website with a secure admin CMS, 12 data models, 56 API handlers, and email delivery via Resend.",
-    challenge: "Building a secure CMS from scratch that non-technical users could operate without breaking the schema.",
-    solution: "Developed 56 API handlers with Zod validation and role-based middleware protection.",
-    result: "Cut admin content update time by 40% while maintaining zero security breaches.",
+    challenge: "Letting an agency update its own website without a developer.",
+    solution: "An admin CMS with JWT role-based login (NextAuth.js), 12 data models, 56 API handlers, Resend email, and Vitest tests.",
+    result: "Services, projects, testimonials, and legal pages are editable from a secured admin panel, and enquiries arrive by email.",
     link: "https://codecraft.pxxlspace.cv"
   },
   {
     id: "drama", title: "drama.gov.sy", role: "Institutional CMS", tags: "Laravel, Blade, Tailwind", status: "Live",
     desc: "An institutional CMS for a government website with a decoupled admin dashboard and role-based access control.",
-    challenge: "Decoupling a public-facing government site from a highly restricted admin dashboard.",
-    solution: "Built a separate Laravel Blade admin panel secured with Spatie RBAC.",
-    result: "Empowered non-technical staff to manage 500+ weekly visitors without developer intervention.",
+    challenge: "Letting authorized staff of a government institution manage content safely.",
+    solution: "A Laravel CMS with a decoupled admin dashboard and role-based access control, built at Mad Fox.",
+    result: "A live institutional website where content is managed by role.",
     link: "https://drama.gov.sy/"
   },
   {
     id: "ronaris", title: "Ronaris Taxi", role: "Multilingual Site", tags: "HTML, CSS, JavaScript", status: "Live",
     desc: "A German, English, and Arabic taxi website for Bonn with a ride-request form and phone and WhatsApp contact options.",
-    challenge: "Multi-language support with a custom ride-request form requiring consistent UI across locales.",
-    solution: "Implemented i18n routing and a custom JavaScript form for seamless ride requests.",
-    result: "Completed multilingual site with 100% form submission success and WhatsApp contact live.",
+    challenge: "Letting Bonn customers book quickly in German, English, or Arabic.",
+    solution: "A JavaScript ride-request form with phone and WhatsApp contact options.",
+    result: "A live site with three easy ways to book: form, call, or WhatsApp.",
     link: "https://www.ronaris-taxi.de/"
   },
   {
     id: "hpmt", title: "HPMT Distribution", role: "Corporate Site", tags: "HTML, CSS, JavaScript", status: "Live",
     desc: "An English and French HVAC distributor website with light and dark modes, product catalog, and testimonials.",
-    challenge: "Multi-language catalog with light and dark mode toggles and product filtering for a distributor site.",
-    solution: "Built with Tailwind dark mode, product grid filtering, and testimonial carousel.",
-    result: "Launched distributor site with 500+ product listings and a 95+ Lighthouse performance score.",
+    challenge: "Presenting an HVAC catalog clearly to English and French customers.",
+    solution: "A bilingual site with light and dark modes, a product catalog, and testimonials.",
+    result: "A live site where customers browse in their language and contact the team.",
     link: "https://hpmtdistribution.com/"
   },
   {
     id: "light", title: "Light Promo", role: "Freelance Build", tags: "Laravel, Bootstrap", status: "Live",
     desc: "A promotional website designed, built, and launched independently for a client.",
-    challenge: "Delivering a fully functional promotional website on a tight deadline with client-specific branding.",
-    solution: "End-to-end build from design handoff to deployment using Laravel and Bootstrap.",
-    result: "Launched client promotional site 2 weeks ahead of schedule with positive feedback and immediate lead generation.",
+    challenge: "Getting a client's promotional website designed and online.",
+    solution: "Designed, built, and launched independently with Laravel and Bootstrap.",
+    result: "A live site, delivered from concept to launch.",
     link: "https://light-promo.com/"
   }
 ];
@@ -112,7 +112,6 @@ export default function Home() {
   return (
     <main className="relative min-h-screen bg-lux-bg selection:bg-lux-gold selection:text-black overflow-hidden font-sans">
 
-      {/* Cinematic Curtain Reveal */}
       <AnimatePresence>
         {!isRevealed && (
           <>
@@ -136,7 +135,6 @@ export default function Home() {
           </div>
         </nav>
 
-        {/* HERO */}
         <section className="relative z-10 min-h-[100dvh] flex flex-col justify-center max-w-7xl mx-auto px-4 pt-20">
           <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 2 }} className="text-lux-gold text-[10px] tracking-[0.4em] uppercase mb-4 md:mb-8">
             Full-Stack Software Developer
@@ -151,23 +149,22 @@ export default function Home() {
 
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 2.5 }} className="flex flex-col gap-6">
             <p className="max-w-md text-lux-muted text-sm md:text-lg">
-              I build secure, full-stack web applications with Laravel, React, and Next.js. Specializing in secure architecture, real-time systems, and end-to-end delivery.
+              I build secure, full-stack web applications with Laravel, React, and Next.js. Payments, real-time features, and admin dashboards, delivered end to end.
             </p>
             <p className="text-lux-gold text-xs font-semibold tracking-wider uppercase">
-              Open to full-time and remote roles
+              Open to full-time and remote roles. Arabic and English.
             </p>
             <div className="flex flex-col sm:flex-row gap-3 md:gap-4">
-              <motion.a whileTap={{ scale: 0.95 }} href="#contact" className="px-6 py-4 md:px-8 rounded-full font-semibold text-[10px] md:text-xs text-center tracking-widest uppercase border border-lux-gold text-lux-gold bg-lux-gold/10 active:bg-lux-gold active:text-black transition-all duration-300">
-                Start a Project
-              </motion.a>
-              <motion.a whileTap={{ scale: 0.95 }} href="/serene-portfolio/Serene_Sheikhalard_Resume.pdf" download className="px-6 py-4 md:px-8 rounded-full font-semibold text-[10px] md:text-xs text-center tracking-widest uppercase border border-lux-border text-lux-text active:border-lux-gold active:text-lux-gold transition-all duration-300">
+              <motion.a whileTap={{ scale: 0.95 }} href="/serene-portfolio/Serene_Sheikhalard_Resume.pdf" download className="px-6 py-4 md:px-8 rounded-full font-semibold text-[10px] md:text-xs text-center tracking-widest uppercase border border-lux-gold text-lux-gold bg-lux-gold/10 active:bg-lux-gold active:text-black transition-all duration-300">
                 Download Resume
+              </motion.a>
+              <motion.a whileTap={{ scale: 0.95 }} href="#contact" className="px-6 py-4 md:px-8 rounded-full font-semibold text-[10px] md:text-xs text-center tracking-widest uppercase border border-lux-border text-lux-text active:border-lux-gold active:text-lux-gold transition-all duration-300">
+                Get in Touch
               </motion.a>
             </div>
           </motion.div>
         </section>
 
-        {/* MARQUEE */}
         <div className="relative z-10 border-y border-lux-border py-4 md:py-8 overflow-hidden bg-black/50 backdrop-blur-sm" aria-hidden="true">
           <div className="flex whitespace-nowrap animate-marquee text-xl md:text-3xl font-serif italic text-lux-muted">
             {[...Array(4)].map((_, i) => (
@@ -182,7 +179,6 @@ export default function Home() {
           </div>
         </div>
 
-        {/* ABOUT */}
         <section id="about" className="relative z-10 max-w-5xl mx-auto px-4 py-24 md:py-48">
           <div className="flex flex-col gap-8 md:flex-row md:gap-12">
             <div className="md:w-1/3">
@@ -191,16 +187,12 @@ export default function Home() {
             </div>
             <div className="md:w-2/3">
               <p className="text-xl md:text-4xl leading-relaxed font-light mb-6 md:mb-8 text-lux-text">
-                Full-stack developer delivering features end to end: React front ends, Laravel APIs, admin dashboards, and Docker deployment. Experienced in role-based access control, secure payment webhooks, and real-time updates.
-              </p>
-              <p className="text-lux-muted text-sm md:text-lg leading-relaxed">
-                I thrive in asynchronous, remote-first environments. I default to written documentation, clear PR descriptions, and Loom walkthroughs rather than unnecessary meetings. I value clean, maintainable code that the next developer can easily understand. Fluent in Arabic and English, open to relocation and remote.
+                I deliver features end to end: React front ends, Laravel APIs, admin dashboards, and Docker deployment. I focus on role-based access control, secure payment webhooks, and real-time updates, and I use AI-assisted tools while owning the architecture and quality of every project.
               </p>
             </div>
           </div>
         </section>
 
-        {/* ENGINEERING PRACTICES — Horizontal swipe on mobile */}
         <section className="relative z-10 py-16 md:py-24 border-t border-lux-border">
           <div className="max-w-7xl mx-auto px-4 mb-8 md:mb-16">
             <h2 className="font-serif text-3xl md:text-5xl text-lux-text">Engineering <span className="italic text-lux-gold">Practices</span></h2>
@@ -215,7 +207,6 @@ export default function Home() {
           </div>
         </section>
 
-        {/* STICKY STACKING PROJECTS */}
         <section id="work" className="relative z-10 max-w-7xl mx-auto px-4 py-16 md:py-24 border-t border-lux-border">
           <div className="mb-12 md:mb-20 flex flex-col md:flex-row justify-between items-start md:items-end gap-2">
             <h2 className="font-serif text-4xl md:text-7xl text-lux-text">Selected <span className="italic text-lux-gold">Work</span></h2>
@@ -255,13 +246,15 @@ export default function Home() {
           </div>
         </section>
 
-        {/* CONTACT */}
         <section id="contact" className="relative z-10 py-24 md:py-48 border-t border-lux-border text-center">
           <div className="max-w-4xl mx-auto px-4">
             <h2 className="text-[10px] md:text-xs tracking-[0.3em] uppercase text-lux-gold mb-6 md:mb-8">Ready to start?</h2>
-            <a href="mailto:serenesheikh23@gmail.com" className="inline-block font-serif text-[clamp(28px,8vw,80px)] leading-tight active:text-lux-gold transition-colors duration-500 text-lux-text">
-              Let's build <br/> something great.
+            <a href="mailto:serenesheikh23@gmail.com" className="inline-block font-serif text-[clamp(28px,8vw,80px)] leading-tight active:text-lux-gold transition-colors duration-500 text-lux-text mb-6">
+              Let's build something great.
             </a>
+            <p className="text-lux-muted text-sm md:text-base max-w-lg mx-auto mb-12">
+              Open to full-time and remote roles. Email me or connect on LinkedIn.
+            </p>
             <div className="mt-12 md:mt-16 flex flex-col sm:flex-row justify-center gap-6 text-[10px] md:text-sm tracking-widest uppercase text-lux-muted">
               <motion.a whileTap={{ scale: 0.9 }} href="mailto:serenesheikh23@gmail.com" className="flex items-center justify-center gap-2 hover:text-lux-gold transition-colors"><Mail className="w-4 h-4" /> Email</motion.a>
               <motion.a whileTap={{ scale: 0.9 }} href="https://www.linkedin.com/in/serene-sheikhalard" target="_blank" className="flex items-center justify-center gap-2 hover:text-lux-gold transition-colors">LinkedIn</motion.a>
@@ -276,7 +269,6 @@ export default function Home() {
         </footer>
       </motion.div>
 
-      {/* EXPANDED MODAL */}
       <AnimatePresence>
         {selectedProject && (
           <>
