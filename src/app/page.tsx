@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, useScroll, useVelocity, useSpring, AnimatePresence, useTransform } from "framer-motion";
+import { motion, useScroll, useVelocity, useSpring, AnimatePresence, useTransform, useMotionValue, useAnimationFrame } from "framer-motion";
 import { ArrowUpRight, Mail, X, Download } from "lucide-react";
 import { useEffect, useState, useRef } from "react";
 
@@ -11,7 +11,7 @@ const PROJECTS = [
     challenge: "Processing crypto payment webhooks securely, since providers can send the same event more than once.",
     solution: "Verified every webhook with HMAC-SHA256 (USDT) and HMAC-SHA512 (Binance Pay) and made processing idempotent, with PHPUnit tests covering it.",
     result: "A repeated webhook is processed once, so duplicate transactions can't be created, and automated tests protect that behavior.",
-    link: "", image: "/marketly.jpg"
+    link: ""
   },
   {
     id: "glowpop", title: "Glow Pop", role: "Luxury E-Commerce", tags: "React, Redux, Laravel, Sanctum", status: "Launching Soon",
@@ -19,7 +19,7 @@ const PROJECTS = [
     challenge: "A complete beauty store in Arabic and English, with a full back office.",
     solution: "React and Redux Toolkit front end with a Laravel API secured by Sanctum, Sham Cash payments, and an admin dashboard.",
     result: "Customers browse, search, save to a wishlist, and check out. Staff manage products, orders, inventory, and users in one place.",
-    link: "", image: "/glowpop.jpg"
+    link: ""
   },
   {
     id: "codecraft", title: "Code Craft", role: "Agency CMS", tags: "Next.js, Prisma, Turso", status: "Live",
@@ -27,7 +27,7 @@ const PROJECTS = [
     challenge: "Letting an agency update its own website without a developer.",
     solution: "An admin CMS with JWT role-based login (NextAuth.js), 12 data models, 56 API handlers, Resend email, and Vitest tests.",
     result: "Services, projects, testimonials, and legal pages are editable from a secured admin panel, and enquiries arrive by email.",
-    link: "https://codecraft.pxxlspace.cv", image: "/codecraft.jpg"
+    link: "https://codecraft.pxxlspace.cv"
   },
   {
     id: "drama", title: "drama.gov.sy", role: "Institutional CMS", tags: "Laravel, Blade, Tailwind", status: "Live",
@@ -35,7 +35,7 @@ const PROJECTS = [
     challenge: "Letting authorized staff of a government institution manage content safely.",
     solution: "A Laravel CMS with a decoupled admin dashboard and role-based access control, built at Mad Fox.",
     result: "A live institutional website where content is managed by role.",
-    link: "https://drama.gov.sy/", image: "/drama.jpg"
+    link: "https://drama.gov.sy/"
   },
   {
     id: "ronaris", title: "Ronaris Taxi", role: "Multilingual Site", tags: "HTML, CSS, JavaScript", status: "Live",
@@ -43,7 +43,7 @@ const PROJECTS = [
     challenge: "Letting Bonn customers book quickly in German, English, or Arabic.",
     solution: "A JavaScript ride-request form with phone and WhatsApp contact options.",
     result: "A live site with three easy ways to book: form, call, or WhatsApp.",
-    link: "https://www.ronaris-taxi.de/", image: "/ronaris.jpg"
+    link: "https://www.ronaris-taxi.de/"
   },
   {
     id: "hpmt", title: "HPMT Distribution", role: "Corporate Site", tags: "HTML, CSS, JavaScript", status: "Live",
@@ -51,7 +51,7 @@ const PROJECTS = [
     challenge: "Presenting an HVAC catalog clearly to English and French customers.",
     solution: "A bilingual site with light and dark modes, a product catalog, and testimonials.",
     result: "A live site where customers browse in their language and contact the team.",
-    link: "https://hpmtdistribution.com/", image: "/hpmt.jpg"
+    link: "https://hpmtdistribution.com/"
   },
   {
     id: "light", title: "Light Promo", role: "Freelance Build", tags: "Laravel, Bootstrap", status: "Live",
@@ -59,7 +59,7 @@ const PROJECTS = [
     challenge: "Getting a client's promotional website designed and online.",
     solution: "Designed, built, and launched independently with Laravel and Bootstrap.",
     result: "A live site, delivered from concept to launch.",
-    link: "https://light-promo.com/", image: "/light.jpg"
+    link: "https://light-promo.com/"
   }
 ];
 
@@ -93,6 +93,67 @@ const ScrambleText = ({ text }: { text: string }) => {
   }, [text]);
 
   return <span aria-label={text}>{displayText}</span>;
+};
+
+// --- VELOCITY MARQUEE COMPONENT ---
+const wrap = (min: number, max: number, v: number) => {
+  const rangeSize = max - min;
+  return ((((v - min) % rangeSize) + rangeSize) % rangeSize) + min;
+};
+
+const SkillsMarquee = ({ activeSkill, setActiveSkill }: { activeSkill: string | null, setActiveSkill: (s: string | null) => void }) => {
+  const baseX = useMotionValue(0);
+  const { scrollY } = useScroll();
+  const scrollVelocity = useVelocity(scrollY);
+  const smoothVelocity = useSpring(scrollVelocity, { damping: 50, stiffness: 400 });
+  const velocityFactor = useTransform(smoothVelocity, [0, 1000], [0, 5], { clamp: false });
+  const directionFactor = useRef(1);
+
+  const x = useTransform(baseX, (v) => `${wrap(-25, 0, v)}%`);
+
+  useAnimationFrame((t, delta) => {
+    let moveBy = directionFactor.current * -2 * (delta / 1000);
+
+    if (velocityFactor.get() < 0) {
+      directionFactor.current = -1;
+    } else if (velocityFactor.get() > 0) {
+      directionFactor.current = 1;
+    }
+
+    moveBy += directionFactor.current * moveBy * velocityFactor.get();
+    baseX.set(baseX.get() + moveBy);
+  });
+
+  return (
+    <div className="relative z-10 border-y border-lux-border bg-black/50 backdrop-blur-sm">
+      <div className="text-center pt-6 pb-2">
+        <p className="text-[10px] md:text-xs uppercase tracking-[0.2em] text-lux-muted">
+          Click any skill below to filter the work
+        </p>
+      </div>
+      <div className="py-4 md:py-6 overflow-hidden" aria-label="Filter projects by skill">
+        <motion.div className="flex whitespace-nowrap text-xl md:text-3xl font-serif italic text-lux-muted" style={{ x }}>
+          {[...Array(4)].map((_, i) => (
+            <div key={i} className="flex gap-8 md:gap-12 items-center px-4 md:px-6">
+              {SKILLS.map((skill, j) => (
+                <button 
+                  key={j} 
+                  onClick={() => setActiveSkill(activeSkill === skill ? null : skill)}
+                  className={`flex items-center gap-8 md:gap-12 px-4 py-2 rounded-xl transition-all duration-300 ${
+                    activeSkill === skill 
+                      ? "text-lux-gold font-bold bg-lux-gold/10" 
+                      : "hover:text-lux-gold hover:bg-white/5"
+                  }`}
+                >
+                  {skill} <span className="text-lux-gold text-xs md:text-sm">✦</span>
+                </button>
+              ))}
+            </div>
+          ))}
+        </motion.div>
+      </div>
+    </div>
+  );
 };
 
 const ProjectModal = ({ project, onClose }: { project: any, onClose: () => void }) => {
@@ -266,36 +327,8 @@ export default function Home() {
           </div>
         </section>
 
-        {/* MARQUEE MOVED HERE - RIGHT BEFORE WORK */}
-        <div className="relative z-10 border-y border-lux-border bg-black/50 backdrop-blur-sm">
-          <div className="text-center pt-6 pb-2">
-            <p className="text-[10px] md:text-xs uppercase tracking-[0.2em] text-lux-muted">
-              Click any skill below to filter the work
-            </p>
-          </div>
-          
-          <div className="py-4 md:py-6 overflow-hidden" aria-label="Filter projects by skill">
-            <div className="flex whitespace-nowrap animate-marquee hover:[animation-play-state:paused] text-xl md:text-3xl font-serif italic text-lux-muted">
-              {[...Array(4)].map((_, i) => (
-                <div key={i} className="flex gap-8 md:gap-12 items-center px-4 md:px-6">
-                  {SKILLS.map((skill, j) => (
-                    <button 
-                      key={j} 
-                      onClick={() => setActiveSkill(activeSkill === skill ? null : skill)}
-                      className={`flex items-center gap-8 md:gap-12 px-4 py-2 rounded-xl transition-all duration-300 ${
-                        activeSkill === skill 
-                          ? "text-lux-gold font-bold bg-lux-gold/10" 
-                          : "hover:text-lux-gold hover:bg-white/5"
-                      }`}
-                    >
-                      {skill} <span className="text-lux-gold text-xs md:text-sm">✦</span>
-                    </button>
-                  ))}
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
+        {/* VELOCITY MARQUEE */}
+        <SkillsMarquee activeSkill={activeSkill} setActiveSkill={setActiveSkill} />
 
         <section id="work" className="relative z-10 max-w-7xl mx-auto px-4 py-16 md:py-24 border-t border-lux-border">
           <div className="mb-12 md:mb-20 flex flex-col md:flex-row justify-between items-start md:items-end gap-2">
@@ -336,39 +369,27 @@ export default function Home() {
                   layoutId={`card-${project.id}`}
                   onClick={() => setSelectedProject(project)}
                   whileTap={{ scale: 0.98 }}
-                  className="group relative bg-lux-card border border-lux-border rounded-2xl cursor-pointer overflow-hidden flex flex-col justify-between min-h-[45vh] md:min-h-[400px] shadow-2xl"
+                  className="group relative bg-lux-card border border-lux-border p-6 md:p-12 rounded-2xl cursor-pointer overflow-hidden flex flex-col justify-between min-h-[45vh] md:min-h-[400px] shadow-2xl"
                 >
-                  {/* Background Image & Gradient */}
-                  {project.image && (
-                    <div className="absolute inset-0 z-0">
-                      <img src={project.image} alt={project.title} className="w-full h-full object-cover opacity-30 group-hover:opacity-50 group-hover:scale-105 transition-all duration-700" />
-                      <div className="absolute inset-0 bg-gradient-to-t from-lux-bg via-lux-bg/80 to-transparent" />
+                  <div className="relative z-10">
+                    <div className="flex justify-between items-start mb-6 md:mb-12">
+                      <motion.span layoutId={`role-${project.id}`} className="text-[10px] md:text-xs tracking-widest uppercase text-lux-gold">{project.role}</motion.span>
+                      <span className="flex items-center gap-1.5 text-[9px] md:text-[10px] tracking-widest uppercase border border-lux-border px-2.5 py-1 rounded-full text-lux-muted">
+                        <span className={`w-1.5 h-1.5 rounded-full ${project.status === "Live" ? "bg-green-500 animate-pulse" : "bg-lux-gold animate-pulse"}`} />
+                        {project.status}
+                      </span>
                     </div>
-                  )}
-
-                  {/* Content Wrapper */}
-                  <div className="relative z-10 p-6 md:p-12 flex flex-col justify-between h-full w-full">
-                    <div>
-                      <div className="flex justify-between items-start mb-6 md:mb-12">
-                        <motion.span layoutId={`role-${project.id}`} className="text-[10px] md:text-xs tracking-widest uppercase text-lux-gold">{project.role}</motion.span>
-                        <span className="flex items-center gap-1.5 text-[9px] md:text-[10px] tracking-widest uppercase border border-lux-border px-2.5 py-1 rounded-full text-lux-muted bg-black/50 backdrop-blur-sm">
-                          <span className={`w-1.5 h-1.5 rounded-full ${project.status === "Live" ? "bg-green-500 animate-pulse" : "bg-lux-gold animate-pulse"}`} />
-                          {project.status}
-                        </span>
-                      </div>
-                      <motion.h3 layoutId={`title-${project.id}`} className="font-serif text-3xl md:text-5xl mb-3 md:mb-4 text-lux-text">{project.title}</motion.h3>
-                      <motion.p layoutId={`desc-${project.id}`} className="text-lux-muted text-sm md:text-base leading-relaxed mb-6 md:mb-8 max-w-2xl">{project.desc}</motion.p>
+                    <motion.h3 layoutId={`title-${project.id}`} className="font-serif text-3xl md:text-5xl mb-3 md:mb-4 text-lux-text">{project.title}</motion.h3>
+                    <motion.p layoutId={`desc-${project.id}`} className="text-lux-muted text-sm md:text-base leading-relaxed mb-6 md:mb-8 max-w-2xl">{project.desc}</motion.p>
+                  </div>
+                  <div className="relative z-10 flex items-end justify-between mt-auto">
+                    <div className="text-[10px] md:text-xs text-lux-muted flex flex-wrap gap-2">
+                      {project.tags.split(", ").map((tag, j) => (
+                        <span key={j} className="bg-black/30 px-2 py-1 md:px-3 rounded-full border border-lux-border/50">{tag}</span>
+                      ))}
                     </div>
-                    
-                    <div className="flex items-end justify-between mt-auto pt-6">
-                      <div className="text-[10px] md:text-xs text-lux-muted flex flex-wrap gap-2">
-                        {project.tags.split(", ").map((tag, j) => (
-                          <span key={j} className="bg-black/50 backdrop-blur-sm px-2 py-1 md:px-3 rounded-full border border-lux-border/50">{tag}</span>
-                        ))}
-                      </div>
-                      <div className="w-10 h-10 md:w-12 md:h-12 rounded-full border border-lux-border flex items-center justify-center bg-black/50 backdrop-blur-sm">
-                        <ArrowUpRight className="w-4 h-4 md:w-5 md:h-5 text-lux-gold" />
-                      </div>
+                    <div className="w-10 h-10 md:w-12 md:h-12 rounded-full border border-lux-border flex items-center justify-center bg-black/50">
+                      <ArrowUpRight className="w-4 h-4 md:w-5 md:h-5 text-lux-gold" />
                     </div>
                   </div>
                 </motion.div>
