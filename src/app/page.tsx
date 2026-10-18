@@ -2,7 +2,7 @@
 
 import { motion, useScroll, useVelocity, useSpring, AnimatePresence, useTransform } from "framer-motion";
 import { ArrowUpRight, Mail, X, Download } from "lucide-react";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 
 const PROJECTS = [
   {
@@ -95,8 +95,70 @@ const ScrambleText = ({ text }: { text: string }) => {
   return <span aria-label={text}>{displayText}</span>;
 };
 
+// --- ISOLATED MODAL COMPONENT FOR SCROLL PROGRESS ---
+const ProjectModal = ({ project, onClose }: { project: any, onClose: () => void }) => {
+  const modalRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({ container: modalRef });
+  const scaleX = useSpring(scrollYProgress, { stiffness: 100, damping: 30, restDelta: 0.001 });
+
+  return (
+    <>
+      <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} onClick={onClose} className="fixed inset-0 bg-black/90 backdrop-blur-md z-50 cursor-pointer" />
+      <div className="fixed inset-0 flex items-end md:items-center justify-center z-50 pointer-events-none p-0 md:p-12">
+        <motion.div 
+          layoutId={`card-${project.id}`} 
+          className="bg-lux-card border-t md:border border-lux-gold/30 w-full max-w-4xl h-[85vh] md:h-auto md:max-h-[90vh] rounded-t-3xl md:rounded-2xl pointer-events-auto relative overflow-hidden flex flex-col"
+        >
+          {/* Reading Progress Bar */}
+          <motion.div className="absolute top-0 left-0 right-0 h-1 bg-lux-gold z-50 origin-left" style={{ scaleX }} />
+
+          <button onClick={onClose} className="absolute top-4 right-4 md:top-6 md:right-6 p-2 rounded-full bg-lux-bg border border-lux-border text-lux-muted active:text-lux-gold transition-colors z-50">
+            <X className="w-5 h-5 md:w-6 md:h-6" />
+          </button>
+
+          <div ref={modalRef} className="overflow-y-auto p-6 md:p-16 hide-scrollbar h-full">
+            <motion.span layoutId={`role-${project.id}`} className="text-[10px] md:text-xs tracking-widest uppercase text-lux-gold block mb-2 md:mb-4">{project.role}</motion.span>
+            <motion.h3 layoutId={`title-${project.id}`} className="font-serif text-3xl md:text-6xl mb-4 md:mb-6 text-lux-text">{project.title}</motion.h3>
+            <motion.p layoutId={`desc-${project.id}`} className="text-lux-muted text-sm md:text-lg leading-relaxed mb-8 md:mb-12">{project.desc}</motion.p>
+
+            <div className="space-y-6 md:space-y-8">
+              <div>
+                <h4 className="text-[10px] md:text-xs tracking-[0.2em] uppercase text-lux-gold mb-1 md:mb-2">The Challenge</h4>
+                <p className="text-lux-text text-sm md:text-lg leading-relaxed">{project.challenge}</p>
+              </div>
+              <div>
+                <h4 className="text-[10px] md:text-xs tracking-[0.2em] uppercase text-lux-gold mb-1 md:mb-2">The Solution</h4>
+                <p className="text-lux-text text-sm md:text-lg leading-relaxed">{project.solution}</p>
+              </div>
+              <div>
+                <h4 className="text-[10px] md:text-xs tracking-[0.2em] uppercase text-lux-gold mb-1 md:mb-2">The Outcome</h4>
+                <div className="bg-lux-gold/10 border border-lux-gold/30 p-4 md:p-6 rounded-xl">
+                  <p className="text-lux-gold-light text-sm md:text-lg leading-relaxed font-semibold">{project.result}</p>
+                </div>
+              </div>
+            </div>
+
+            <div className="mt-8 md:mt-12 pt-6 md:pt-8 border-t border-lux-border flex flex-wrap gap-2 md:gap-3">
+              {project.tags.split(", ").map((tag: string, j: number) => (
+                <span key={j} className="bg-black/50 px-3 py-1.5 md:px-4 md:py-2 rounded-full border border-lux-border text-lux-muted text-[10px] md:text-sm">{tag}</span>
+              ))}
+            </div>
+
+            {project.link && (
+              <motion.a whileTap={{ scale: 0.95 }} href={project.link} target="_blank" className="inline-flex items-center gap-2 mt-8 px-6 py-3 md:px-8 md:py-4 bg-lux-gold text-black font-semibold text-[10px] md:text-xs tracking-widest uppercase rounded-full active:bg-lux-gold-light transition-colors">
+                Visit Live Site <ArrowUpRight className="w-4 h-4" />
+              </motion.a>
+            )}
+          </div>
+        </motion.div>
+      </div>
+    </>
+  );
+};
+
 export default function Home() {
   const [selectedProject, setSelectedProject] = useState<any>(null);
+  const [activeSkill, setActiveSkill] = useState<string | null>(null);
   const [isRevealed, setIsRevealed] = useState(false);
 
   const { scrollY } = useScroll();
@@ -104,19 +166,36 @@ export default function Home() {
   const smoothVelocity = useSpring(scrollVelocity, { damping: 50, stiffness: 400 });
   const skewY = useTransform(smoothVelocity, [-2000, 2000], [-4, 4]);
 
+  // Preloader speed fixed (800ms)
   useEffect(() => {
-    const timer = setTimeout(() => setIsRevealed(true), 1500);
+    const timer = setTimeout(() => setIsRevealed(true), 800);
     return () => clearTimeout(timer);
   }, []);
+
+  // Modal Scroll Lock
+  useEffect(() => {
+    if (selectedProject) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "unset";
+    }
+    return () => { document.body.style.overflow = "unset"; };
+  }, [selectedProject]);
+
+  // Filter Projects based on clicked skill
+  const filteredProjects = activeSkill
+    ? PROJECTS.filter((p) => p.tags.toLowerCase().includes(activeSkill.toLowerCase()))
+    : PROJECTS;
 
   return (
     <main className="relative min-h-screen bg-lux-bg selection:bg-lux-gold selection:text-black overflow-hidden font-sans">
 
+      {/* Faster Cinematic Curtain Reveal */}
       <AnimatePresence>
         {!isRevealed && (
           <>
-            <motion.div initial={{ y: 0 }} animate={{ y: "-100%" }} transition={{ duration: 1.2, ease: [0.76, 0, 0.24, 1], delay: 1.5 }} className="fixed top-0 left-0 w-full h-1/2 bg-black z-[100] border-b border-lux-gold/30" />
-            <motion.div initial={{ y: 0 }} animate={{ y: "100%" }} transition={{ duration: 1.2, ease: [0.76, 0, 0.24, 1], delay: 1.5 }} className="fixed bottom-0 left-0 w-full h-1/2 bg-black z-[100] border-t border-lux-gold/30" />
+            <motion.div initial={{ y: 0 }} animate={{ y: "-100%" }} transition={{ duration: 0.8, ease: [0.76, 0, 0.24, 1], delay: 0.8 }} className="fixed top-0 left-0 w-full h-1/2 bg-black z-[100] border-b border-lux-gold/30" />
+            <motion.div initial={{ y: 0 }} animate={{ y: "100%" }} transition={{ duration: 0.8, ease: [0.76, 0, 0.24, 1], delay: 0.8 }} className="fixed bottom-0 left-0 w-full h-1/2 bg-black z-[100] border-t border-lux-gold/30" />
           </>
         )}
       </AnimatePresence>
@@ -136,18 +215,18 @@ export default function Home() {
         </nav>
 
         <section className="relative z-10 min-h-[100dvh] flex flex-col justify-center max-w-7xl mx-auto px-4 pt-20">
-          <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 2 }} className="text-lux-gold text-[10px] tracking-[0.4em] uppercase mb-4 md:mb-8">
+          <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1.2 }} className="text-lux-gold text-[10px] tracking-[0.4em] uppercase mb-4 md:mb-8">
             Full-Stack Software Developer
           </motion.p>
 
           <h1 className="font-serif text-[clamp(50px,15vw,140px)] leading-[0.9] tracking-tight mb-6 md:mb-8">
-            <motion.span initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 2.1 }} className="block">Serene</motion.span>
-            <motion.span initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 2.2 }} className="block italic text-lux-gold-light">
+            <motion.span initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 1.3 }} className="block">Serene</motion.span>
+            <motion.span initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1.4 }} className="block italic text-lux-gold-light">
               <ScrambleText text="Sheikhalard" />
             </motion.span>
           </h1>
 
-          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 2.5 }} className="flex flex-col gap-6">
+          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1.6 }} className="flex flex-col gap-6">
             <p className="max-w-md text-lux-muted text-sm md:text-lg">
               I build secure, full-stack web applications with Laravel, React, and Next.js. Payments, real-time features, and admin dashboards, delivered end to end.
             </p>
@@ -165,14 +244,19 @@ export default function Home() {
           </motion.div>
         </section>
 
-        <div className="relative z-10 border-y border-lux-border py-4 md:py-8 overflow-hidden bg-black/50 backdrop-blur-sm" aria-hidden="true">
-          <div className="flex whitespace-nowrap animate-marquee text-xl md:text-3xl font-serif italic text-lux-muted">
+        {/* INTERACTIVE MARQUEE FILTER */}
+        <div className="relative z-10 border-y border-lux-border py-4 md:py-8 overflow-hidden bg-black/50 backdrop-blur-sm" aria-label="Filter projects by skill">
+          <div className="flex whitespace-nowrap animate-marquee hover:[animation-play-state:paused] text-xl md:text-3xl font-serif italic text-lux-muted">
             {[...Array(4)].map((_, i) => (
               <div key={i} className="flex gap-8 md:gap-12 items-center px-4 md:px-6">
                 {SKILLS.map((skill, j) => (
-                  <span key={j} className="flex items-center gap-8 md:gap-12">
+                  <button 
+                    key={j} 
+                    onClick={() => setActiveSkill(activeSkill === skill ? null : skill)}
+                    className={`flex items-center gap-8 md:gap-12 hover:text-lux-gold transition-colors ${activeSkill === skill ? "text-lux-gold font-bold" : ""}`}
+                  >
                     {skill} <span className="text-lux-gold text-xs md:text-sm">✦</span>
-                  </span>
+                  </button>
                 ))}
               </div>
             ))}
@@ -209,13 +293,39 @@ export default function Home() {
 
         <section id="work" className="relative z-10 max-w-7xl mx-auto px-4 py-16 md:py-24 border-t border-lux-border">
           <div className="mb-12 md:mb-20 flex flex-col md:flex-row justify-between items-start md:items-end gap-2">
-            <h2 className="font-serif text-4xl md:text-7xl text-lux-text">Selected <span className="italic text-lux-gold">Work</span></h2>
-            <span className="text-[10px] md:text-xs tracking-widest uppercase text-lux-muted">({PROJECTS.length} Projects)</span>
+            <h2 className="font-serif text-4xl md:text-7xl text-lux-text">
+              {activeSkill ? (
+                <>Filtered <span className="italic text-lux-gold">Work</span></>
+              ) : (
+                <>Selected <span className="italic text-lux-gold">Work</span></>
+              )}
+            </h2>
+            <div className="flex items-center gap-4">
+              {activeSkill && (
+                <button onClick={() => setActiveSkill(null)} className="text-[10px] uppercase tracking-widest text-lux-gold border border-lux-gold px-3 py-1 rounded-full hover:bg-lux-gold hover:text-black transition-colors">
+                  Clear Filter
+                </button>
+              )}
+              <span className="text-[10px] md:text-xs tracking-widest uppercase text-lux-muted">({filteredProjects.length} Projects)</span>
+            </div>
           </div>
 
           <div className="relative flex flex-col items-center">
-            {PROJECTS.map((project, i) => (
-              <div key={project.id} className="sticky w-full max-w-5xl" style={{ top: `calc(12vh + ${i * 15}px)`, marginBottom: '4vh' }}>
+            <AnimatePresence>
+              {filteredProjects.length === 0 && (
+                <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="text-lux-muted text-sm py-12">
+                  No projects match this filter.
+                </motion.div>
+              )}
+            </AnimatePresence>
+
+            {filteredProjects.map((project, i) => (
+              <motion.div 
+                layout
+                key={project.id} 
+                className={`w-full max-w-5xl ${filteredProjects.length > 1 ? "sticky" : "relative"}`} 
+                style={filteredProjects.length > 1 ? { top: `calc(12vh + ${i * 15}px)`, marginBottom: '4vh' } : { marginBottom: '4vh' }}
+              >
                 <motion.div
                   layoutId={`card-${project.id}`}
                   onClick={() => setSelectedProject(project)}
@@ -244,7 +354,7 @@ export default function Home() {
                     </div>
                   </div>
                 </motion.div>
-              </div>
+              </motion.div>
             ))}
           </div>
         </section>
@@ -274,49 +384,7 @@ export default function Home() {
 
       <AnimatePresence>
         {selectedProject && (
-          <>
-            <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} onClick={() => setSelectedProject(null)} className="fixed inset-0 bg-black/90 backdrop-blur-md z-50 cursor-pointer" />
-            <div className="fixed inset-0 flex items-end md:items-center justify-center z-50 pointer-events-none p-0 md:p-12">
-              <motion.div layoutId={`card-${selectedProject.id}`} className="bg-lux-card border-t md:border border-lux-gold/30 w-full max-w-4xl h-[85vh] md:h-auto md:max-h-[90vh] overflow-y-auto rounded-t-3xl md:rounded-2xl p-6 md:p-16 pointer-events-auto relative hide-scrollbar">
-                <button onClick={() => setSelectedProject(null)} className="absolute top-4 right-4 md:top-6 md:right-6 p-2 rounded-full bg-lux-bg border border-lux-border text-lux-muted active:text-lux-gold transition-colors z-50">
-                  <X className="w-5 h-5 md:w-6 md:h-6" />
-                </button>
-
-                <motion.span layoutId={`role-${selectedProject.id}`} className="text-[10px] md:text-xs tracking-widest uppercase text-lux-gold block mb-2 md:mb-4">{selectedProject.role}</motion.span>
-                <motion.h3 layoutId={`title-${selectedProject.id}`} className="font-serif text-3xl md:text-6xl mb-4 md:mb-6 text-lux-text">{selectedProject.title}</motion.h3>
-                <motion.p layoutId={`desc-${selectedProject.id}`} className="text-lux-muted text-sm md:text-lg leading-relaxed mb-8 md:mb-12">{selectedProject.desc}</motion.p>
-
-                <div className="space-y-6 md:space-y-8">
-                  <div>
-                    <h4 className="text-[10px] md:text-xs tracking-[0.2em] uppercase text-lux-gold mb-1 md:mb-2">The Challenge</h4>
-                    <p className="text-lux-text text-sm md:text-lg leading-relaxed">{selectedProject.challenge}</p>
-                  </div>
-                  <div>
-                    <h4 className="text-[10px] md:text-xs tracking-[0.2em] uppercase text-lux-gold mb-1 md:mb-2">The Solution</h4>
-                    <p className="text-lux-text text-sm md:text-lg leading-relaxed">{selectedProject.solution}</p>
-                  </div>
-                  <div>
-                    <h4 className="text-[10px] md:text-xs tracking-[0.2em] uppercase text-lux-gold mb-1 md:mb-2">The Outcome</h4>
-                    <div className="bg-lux-gold/10 border border-lux-gold/30 p-4 md:p-6 rounded-xl">
-                      <p className="text-lux-gold-light text-sm md:text-lg leading-relaxed font-semibold">{selectedProject.result}</p>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="mt-8 md:mt-12 pt-6 md:pt-8 border-t border-lux-border flex flex-wrap gap-2 md:gap-3">
-                  {selectedProject.tags.split(", ").map((tag: string, j: number) => (
-                    <span key={j} className="bg-black/50 px-3 py-1.5 md:px-4 md:py-2 rounded-full border border-lux-border text-lux-muted text-[10px] md:text-sm">{tag}</span>
-                  ))}
-                </div>
-
-                {selectedProject.link && (
-                  <motion.a whileTap={{ scale: 0.95 }} href={selectedProject.link} target="_blank" className="inline-flex items-center gap-2 mt-8 px-6 py-3 md:px-8 md:py-4 bg-lux-gold text-black font-semibold text-[10px] md:text-xs tracking-widest uppercase rounded-full active:bg-lux-gold-light transition-colors">
-                    Visit Live Site <ArrowUpRight className="w-4 h-4" />
-                  </motion.a>
-                )}
-              </motion.div>
-            </div>
-          </>
+          <ProjectModal project={selectedProject} onClose={() => setSelectedProject(null)} />
         )}
       </AnimatePresence>
     </main>
