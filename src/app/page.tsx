@@ -66,10 +66,10 @@ const PROJECTS = [
 const SKILLS = ["Laravel", "React", "Next.js", "TypeScript", "Docker", "Redux", "Sanctum", "Prisma", "MySQL", "CI/CD", "PHPUnit", "Tailwind", "Claude / AI-Assisted Dev", "Notion"];
 
 const PRACTICES = [
-  { title: "Automated Testing", text: "PHPUnit (Backend) and Vitest (Frontend). 100% test coverage on core payment webhooks." },
-  { title: "CI/CD Pipelines", text: "GitHub Actions for automated testing, linting, and zero-downtime deployments." },
-  { title: "Secure Architecture", text: "HMAC signature verification, Sanctum API tokens, and strict role-based access control." },
-  { title: "Performance First", text: "Lighthouse 95+ scores, static exports, and image optimization." }
+  { title: "Frontend Architecture", text: "React 19, Next.js App Router, and Redux Toolkit for scalable, type-safe global state management." },
+  { title: "Backend & APIs", text: "Laravel REST APIs secured with Sanctum, Spatie RBAC, and HMAC-verified webhooks for payments." },
+  { title: "Testing & CI/CD", text: "Vitest (Frontend) and PHPUnit (Backend) automated via GitHub Actions pipelines." },
+  { title: "Performance First", text: "Lighthouse 95+ scores through static exports, image optimization, and lazy loading." }
 ];
 
 const ScrambleText = ({ text }: { text: string }) => {
@@ -225,7 +225,10 @@ export default function Home() {
                   <div className="relative z-10">
                     <div className="flex justify-between items-start mb-6 md:mb-12">
                       <motion.span layoutId={`role-${project.id}`} className="text-[10px] md:text-xs tracking-widest uppercase text-lux-gold">{project.role}</motion.span>
-                      <span className="text-[9px] md:text-[10px] tracking-widest uppercase border border-lux-border px-2 py-1 rounded-full text-lux-muted">{project.status}</span>
+                      <span className="flex items-center gap-1.5 text-[9px] md:text-[10px] tracking-widest uppercase border border-lux-border px-2.5 py-1 rounded-full text-lux-muted">
+                        <span className={`w-1.5 h-1.5 rounded-full ${project.status === "Live" ? "bg-green-500 animate-pulse" : "bg-lux-gold animate-pulse"}`} />
+                        {project.status}
+                      </span>
                     </div>
                     <motion.h3 layoutId={`title-${project.id}`} className="font-serif text-3xl md:text-5xl mb-3 md:mb-4 text-lux-text">{project.title}</motion.h3>
                     <motion.p layoutId={`desc-${project.id}`} className="text-lux-muted text-sm md:text-base leading-relaxed mb-6 md:mb-8 max-w-2xl">{project.desc}</motion.p>
