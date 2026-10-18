@@ -70,13 +70,13 @@ export default function Home() {
         style={{ x: useTransform(springX, v => -v), y: useTransform(springY, v => -v) }}
       />
 
-      {/* Navigation */}
-      <nav className="fixed top-0 w-full flex justify-between px-6 md:px-12 py-8 text-xs tracking-[0.2em] uppercase z-40 mix-blend-difference">
+      {/* Navigation - Fixed with Glassmorphism */}
+      <nav className="fixed top-0 w-full flex justify-between px-6 md:px-12 py-6 text-xs tracking-[0.2em] uppercase z-40 bg-lux-bg/80 backdrop-blur-md border-b border-lux-border/50 transition-all duration-300">
         <a href="#" className="font-serif text-lg font-bold text-lux-gold tracking-normal">S.S.</a>
-        <div className="flex gap-8">
-          <a href="#work" className="hover:text-lux-gold transition-colors">Work</a>
-          <a href="#about" className="hover:text-lux-gold transition-colors">About</a>
-          <a href="#contact" className="hover:text-lux-gold transition-colors">Contact</a>
+        <div className="flex gap-8 items-center">
+          <a href="#work" className="text-lux-text hover:text-lux-gold transition-colors">Work</a>
+          <a href="#about" className="text-lux-text hover:text-lux-gold transition-colors">About</a>
+          <a href="#contact" className="text-lux-text hover:text-lux-gold transition-colors">Contact</a>
         </div>
       </nav>
 
