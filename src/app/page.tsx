@@ -6,20 +6,20 @@ import { useEffect, useState, useRef } from "react";
 
 const PROJECTS = [
   {
-    id: "marketly", title: "Marketly", role: "Full-Stack SaaS Platform", tags: "Laravel, React, TypeScript, Docker", status: "Launching Soon",
+    id: "marketly", title: "Marketly", role: "Full-Stack SaaS Platform", tags: "Laravel, React, TypeScript, Docker", status: "Live",
     desc: "A multi-role marketplace with VIP tiers, RBAC, real-time updates via Reverb, crypto and regional wallet payments, HMAC-verified webhooks, and CI/CD.",
     challenge: "Processing crypto payment webhooks securely, since providers can send the same event more than once.",
     solution: "Verified every webhook with HMAC-SHA256 (USDT) and HMAC-SHA512 (Binance Pay) and made processing idempotent, with PHPUnit tests covering it.",
     result: "A repeated webhook is processed once, so duplicate transactions can't be created, and automated tests protect that behavior.",
-    link: ""
+    link: "https://marketlly.store"
   },
   {
-    id: "glowpop", title: "Glow Pop", role: "Luxury E-Commerce", tags: "React, Redux, Laravel, Sanctum", status: "Launching Soon",
+    id: "glowpop", title: "Glow Pop", role: "Luxury E-Commerce", tags: "React, Redux, Laravel, Sanctum", status: "Live",
     desc: "A luxury beauty store with cart, wishlist, checkout, Arabic and English support, and a full admin dashboard.",
     challenge: "A complete beauty store in Arabic and English, with a full back office.",
     solution: "React and Redux Toolkit front end with a Laravel API secured by Sanctum, Sham Cash payments, and an admin dashboard.",
     result: "Customers browse, search, save to a wishlist, and check out. Staff manage products, orders, inventory, and users in one place.",
-    link: ""
+    link: "https://github.com/serenesheikh23/glowpop"
   },
   {
     id: "codecraft", title: "Code Craft", role: "Agency CMS", tags: "Next.js, Prisma, Turso", status: "Live",
@@ -27,7 +27,7 @@ const PROJECTS = [
     challenge: "Letting an agency update its own website without a developer.",
     solution: "An admin CMS with JWT role-based login (NextAuth.js), 12 data models, 56 API handlers, Resend email, and Vitest tests.",
     result: "Services, projects, testimonials, and legal pages are editable from a secured admin panel, and enquiries arrive by email.",
-    link: "https://codecraft.pxxlspace.cv"
+    link: "https://codeeecrafttt.vercel.app"
   },
   {
     id: "drama", title: "drama.gov.sy", role: "Institutional CMS", tags: "Laravel, Blade, Tailwind", status: "Live",
@@ -241,7 +241,7 @@ export default function Home() {
           <motion.a whileTap={{ scale: 0.9 }} href="#work" className="text-lux-text hover:text-lux-gold">Work</motion.a>
           <motion.a whileTap={{ scale: 0.9 }} href="#about" className="text-lux-text hover:text-lux-gold">About</motion.a>
           <motion.a whileTap={{ scale: 0.9 }} href="#contact" className="text-lux-text hover:text-lux-gold">Contact</motion.a>
-          <motion.a whileTap={{ scale: 0.9 }} href="/serene-portfolio/Serene_Sheikhalard_Resume.pdf" download className="hidden md:flex items-center gap-1 text-lux-gold hover:text-lux-gold-light">
+          <motion.a whileTap={{ scale: 0.9 }} href="/Serene_Sheikhalard_Resume.pdf" download="Serene_Sheikhalard_Resume.pdf" className="hidden md:flex items-center gap-1 text-lux-gold hover:text-lux-gold-light">
             <Download className="w-3 h-3" /> Resume
           </motion.a>
         </div>
@@ -270,7 +270,7 @@ export default function Home() {
               Open to full-time and remote roles. Arabic and English.
             </p>
             <div className="flex flex-col sm:flex-row gap-3 md:gap-4">
-              <motion.a whileTap={{ scale: 0.95 }} href="/serene-portfolio/Serene_Sheikhalard_Resume.pdf" download className="px-6 py-4 md:px-8 rounded-full font-semibold text-[10px] md:text-xs text-center tracking-widest uppercase border border-lux-gold text-lux-gold bg-lux-gold/10 active:bg-lux-gold active:text-black transition-all duration-300">
+              <motion.a whileTap={{ scale: 0.95 }} href="/Serene_Sheikhalard_Resume.pdf" download="Serene_Sheikhalard_Resume.pdf" className="px-6 py-4 md:px-8 rounded-full font-semibold text-[10px] md:text-xs text-center tracking-widest uppercase border border-lux-gold text-lux-gold bg-lux-gold/10 active:bg-lux-gold active:text-black transition-all duration-300">
                 Download Resume
               </motion.a>
               <motion.a whileTap={{ scale: 0.95 }} href="#contact" className="px-6 py-4 md:px-8 rounded-full font-semibold text-[10px] md:text-xs text-center tracking-widest uppercase border border-lux-border text-lux-text active:border-lux-gold active:text-lux-gold transition-all duration-300">
@@ -392,7 +392,7 @@ export default function Home() {
               <motion.a whileTap={{ scale: 0.9 }} href="mailto:serenesheikh23@gmail.com" className="flex items-center justify-center gap-2 hover:text-lux-gold transition-colors"><Mail className="w-4 h-4" /> Email</motion.a>
               <motion.a whileTap={{ scale: 0.9 }} href="https://www.linkedin.com/in/serene-sheikhalard" target="_blank" className="flex items-center justify-center gap-2 hover:text-lux-gold transition-colors">LinkedIn</motion.a>
               <motion.a whileTap={{ scale: 0.9 }} href="https://github.com/serenesheikh23" target="_blank" className="flex items-center justify-center gap-2 hover:text-lux-gold transition-colors">GitHub</motion.a>
-              <motion.a whileTap={{ scale: 0.9 }} href="/serene-portfolio/Serene_Sheikhalard_Resume.pdf" download className="flex items-center justify-center gap-2 hover:text-lux-gold transition-colors">Resume</motion.a>
+              <motion.a whileTap={{ scale: 0.9 }} href="/Serene_Sheikhalard_Resume.pdf" download="Serene_Sheikhalard_Resume.pdf" className="flex items-center justify-center gap-2 hover:text-lux-gold transition-colors">Resume</motion.a>
             </div>
           </div>
         </section>
