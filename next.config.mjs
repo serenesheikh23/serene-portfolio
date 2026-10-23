@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  output: 'export',
-  basePath: '/serene-portfolio',
-  images: { unoptimized: true },
+  // Vercel handles everything natively. 
+  // No need for 'export' or 'unoptimized' images.
 };
+
 export default nextConfig;
