@@ -8,8 +8,8 @@ export const site = {
   cvName: "Serene_Sheikhalard_Software_Engineer.pdf",
   location: "Irving, Texas",
   market: "Dallas–Fort Worth",
-  availability: "Entry-level software engineer · Dallas–Fort Worth",
-  education: "BS Information Technology, June 2026",
+  availability: "Available for full-time software engineering roles · Dallas–Fort Worth",
+  education: "BS Information Technology, graduated June 2026",
   school: "International University of Science and Technology",
   languages: "Arabic (native) · English (native)",
   url: "https://serene-sheikhalard-portfolio.vercel.app",
@@ -104,7 +104,7 @@ export const projects: Project[] = [
     period: "May 2025 – Mar 2026",
     summary:
       "Designed, built, and launched independently from concept to live deployment, including its full admin dashboard.",
-    stack: ["Laravel", "Bootstrap"],
+    stack: [],
     metric: "Concept → live · Full admin dashboard",
     liveUrl: "https://light-promo.com/",
     visual: "light",
@@ -185,7 +185,7 @@ export const caseStudies: CaseStudy[] = [
     problem:
       "An agency needed to update its own site without a developer, while keeping the public pages fast on a phone.",
     decisions: [
-      "Built a 56-handler admin CMS on 12 Prisma models, with JWT role-based login through NextAuth and Resend for enquiries.",
+      "Built a 56-handler admin CMS on 12 Prisma models, with NextAuth authentication.",
       "Split the public site into 36 pages and 30 components, then tested the route handlers with 8 Vitest tests.",
       "Cut mobile LCP from 5.3s to 2.4s by converting images to WebP and loading the hero with priority.",
     ],
@@ -210,7 +210,7 @@ export const caseStudies: CaseStudy[] = [
       "A government institution needed staff to manage every section and content field of an all-Arabic site, safely.",
     decisions: [
       "Built the Laravel system end to end: Blade front end, controllers, Eloquent models, and full database CRUD.",
-      "Delivered the all-Arabic RTL CMS with an admin dashboard covering every section and content field, plus role-based access.",
+      "Delivered the all-Arabic RTL CMS with an admin dashboard covering every section and content field.",
       "Reviewed peer PRs before merge, fixed bugs, and improved system performance across the platform.",
     ],
     stack: ["Laravel", "Blade", "Tailwind", "HTML/CSS", "RTL"],

@@ -76,7 +76,7 @@ export default function Home() {
                 </div>
                 <div className="fact">
                   <dt>Education</dt>
-                  <dd>BS Information Technology, June 2026</dd>
+                  <dd>BS Information Technology, graduated June 2026</dd>
                 </div>
                 <div className="fact">
                   <dt>Languages</dt>
@@ -463,7 +463,7 @@ export default function Home() {
               </h2>
               <p className="section-intro">
                 I&apos;m looking for an entry-level software engineer role in
-                Dallas–Fort Worth. Graduating June 2026; available for full-time
+                Dallas–Fort Worth. graduated June 2026; available for full-time
                 work after that.
               </p>
             </div>
