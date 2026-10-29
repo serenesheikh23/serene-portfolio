@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { site } from "@/lib/content";
 
 export default function MobileActionBar() {
   const [hidden, setHidden] = useState(false);

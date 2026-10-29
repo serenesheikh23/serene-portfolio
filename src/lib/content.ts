@@ -279,7 +279,7 @@ export const processSteps = [
   {
     num: "04",
     title: "Ship it, then keep it live",
-    text: "Three production applications, a live government CMS, and light-promo.com, deployed with Docker, Nginx, Vercel, and Railway.",
+    text: "Marketly, Ismail Cosmetics, Code Craft, the live drama.gov.sy CMS, and light-promo.com, deployed with Docker, Nginx, Vercel, and Railway.",
   },
 ];
 
