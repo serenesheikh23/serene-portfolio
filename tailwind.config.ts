@@ -5,31 +5,27 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        lux: {
-          bg: "#0A0A0A",       // Deep obsidian
-          card: "#141414",     // Slightly lighter card
-          text: "#F5F5F5",     // Off-white cream
-          muted: "#A3A3A3",    // Subtle grey
-          gold: "#D4AF37",     // Rich gold
-          "gold-light": "#F3E5AB",
-          border: "#262626",
-        }
+        paper: "var(--paper)",
+        "paper-dim": "var(--paper-dim)",
+        ink: "var(--ink)",
+        "ink-soft": "var(--ink-soft)",
+        muted: "var(--muted)",
+        rule: "var(--rule)",
+        accent: "var(--accent)",
+        "accent-soft": "var(--accent-soft)",
+        surface: "var(--surface)",
       },
       fontFamily: {
-        sans: ["var(--font-manrope)", "sans-serif"],
-        serif: ["var(--font-playfair)", "serif"],
+        sans: ["var(--font-manrope)", "system-ui", "sans-serif"],
+        serif: ["var(--font-instrument)", "Georgia", "serif"],
+        mono: ["var(--font-mono)", "ui-monospace", "monospace"],
       },
-      animation: {
-        marquee: "marquee 30s linear infinite",
-      },
-      keyframes: {
-        marquee: {
-          "0%": { transform: "translateX(0)" },
-          "100%": { transform: "translateX(-50%)" },
-        },
+      maxWidth: {
+        page: "90rem",
       },
     },
   },
   plugins: [],
 };
+
 export default config;
