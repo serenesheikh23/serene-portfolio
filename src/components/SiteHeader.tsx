@@ -22,7 +22,7 @@ export default function SiteHeader() {
 
           <a
             className="header-cv"
-            href={site.cv}
+            href="/Serene_Sheikhalard_Software_Engineer.pdf"
             download={site.cvName}
             aria-label="Download Serene Sheikhalard's CV as a PDF"
           >

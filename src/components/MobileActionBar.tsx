@@ -52,7 +52,7 @@ export default function MobileActionBar() {
         </a>
         <a
           className="mobile-bar__link"
-          href={site.cv}
+          href="/Serene_Sheikhalard_Software_Engineer.pdf"
           download={site.cvName}
           aria-label="Download Serene Sheikhalard's CV as a PDF"
         >

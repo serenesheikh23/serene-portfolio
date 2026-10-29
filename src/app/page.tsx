@@ -51,7 +51,7 @@ export default function Home() {
                 </a>
                 <a
                   className="btn"
-                  href={site.cv}
+                  href="/Serene_Sheikhalard_Software_Engineer.pdf"
                   download={site.cvName}
                   aria-label="Download Serene Sheikhalard's CV as a PDF"
                 >
@@ -499,7 +499,7 @@ export default function Home() {
                 </a>
                 <a
                   className="contact-link"
-                  href={site.cv}
+                  href="/Serene_Sheikhalard_Software_Engineer.pdf"
                   download={site.cvName}
                   aria-label="Download Serene Sheikhalard's CV as a PDF"
                 >
@@ -510,7 +510,7 @@ export default function Home() {
 
               <a
                 className="btn btn--primary"
-                href={site.cv}
+                href="/Serene_Sheikhalard_Software_Engineer.pdf"
                 download={site.cvName}
                 aria-label="Download Serene Sheikhalard's CV as a PDF"
               >
