@@ -1,5 +1,5 @@
 import CommandPalette from "@/components/CommandPalette";
-import { navItems, site } from "@/lib/content";
+import { navItems } from "@/lib/content";
 
 export default function SiteHeader() {
   return (
