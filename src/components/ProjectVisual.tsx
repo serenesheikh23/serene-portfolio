@@ -151,7 +151,7 @@ export default function ProjectVisual({ variant }: { variant: Visual }) {
             <b>Light Promo</b>
             <span>Concept → live</span>
             <i />
-            <span>Laravel · Bootstrap</span>
+            <span>Concept → live</span>
           </div>
         )}
       </div>

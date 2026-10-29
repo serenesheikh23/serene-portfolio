@@ -404,7 +404,7 @@ export default function Home() {
               <p>
                 I&apos;m Serene, a full-stack software engineer based in Irving,
                 Texas. I study Information Technology at the International
-                University of Science and Technology and graduate in June 2026.
+                University of Science and Technology and graduated in June 2026.
               </p>
               <p>
                 I started shipping at Mad Fox, where I built a Laravel system end
@@ -426,7 +426,7 @@ export default function Home() {
                   <dt>Education</dt>
                   <dd>
                     BS Information Technology, International University of
-                    Science and Technology, June 2026
+                    Science and Technology, graduated June 2026
                   </dd>
                 </div>
                 <div className="credential">
@@ -463,7 +463,7 @@ export default function Home() {
               </h2>
               <p className="section-intro">
                 I&apos;m looking for an entry-level software engineer role in
-                Dallas–Fort Worth. graduated June 2026; available for full-time
+                Dallas–Fort Worth. Graduated June 2026; available for full-time software engineering roles now
                 work after that.
               </p>
             </div>

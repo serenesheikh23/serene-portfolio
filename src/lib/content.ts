@@ -99,7 +99,7 @@ export const projects: Project[] = [
     slug: "light",
     index: "05",
     title: "Light Promo",
-    subtitle: "Freelance promotional site",
+    subtitle: "Promotional site",
     role: "Independent build at Mad Fox",
     period: "May 2025 – Mar 2026",
     summary:
@@ -218,7 +218,7 @@ export const caseStudies: CaseStudy[] = [
       { value: "Live", label: "at drama.gov.sy" },
       { value: "Full", label: "admin dashboard" },
       { value: "RTL", label: "Arabic interface" },
-      { value: "1", label: "system built end to end" },
+      { value: "End to end", label: "system built and deployed" },
     ],
     liveUrl: "https://drama.gov.sy/",
     visual: "madfox",

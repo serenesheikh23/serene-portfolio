@@ -19,7 +19,7 @@ Branch: `redesign` (created from `main`; `main` is never touched, merged, or dep
 Idea sentence: **Serene's shipped work becomes an annotated index you can open, swipe, and inspect.** The project rows expand inline; the case-study gallery swipes; the payment architecture is a step-through; the Code Craft performance claim is a draggable before/after.
 
 Positioning line: **"Software engineer who builds fast, accessible interfaces and the Laravel backends behind them."**
-Supporting line: **"Entry-level software engineer · Dallas–Fort Worth · BS Information Technology, graduated June 2026."**
+Supporting line: **"Available for full-time software engineering roles · Dallas–Fort Worth · BS Information Technology, graduated June 2026."**
 
 ## Palette
 
