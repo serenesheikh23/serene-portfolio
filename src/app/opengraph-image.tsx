@@ -1,6 +1,6 @@
 import { ImageResponse } from "next/og";
 
-export const alt = "Serene Sheikhalard — full-stack and front-end software engineer in Dallas–Fort Worth";
+export const alt = "Serene Sheikhalard — full-stack and front-end software engineer based in Dallas–Fort Worth, open to relocation";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -73,7 +73,7 @@ export default async function Image() {
           }}
         >
           <span>Full-stack · Front-end</span>
-          <span>Dallas–Fort Worth</span>
+          <span>Dallas–Fort Worth · Open to relocation</span>
         </div>
       </div>
     ),

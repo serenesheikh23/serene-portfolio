@@ -45,7 +45,7 @@ export const metadata: Metadata = {
     "React developer",
     "Next.js developer",
     "Laravel developer",
-    "Dallas Fort Worth software engineer",
+    "software engineer open to relocation",
     "entry-level software engineer",
   ],
   category: "technology",
