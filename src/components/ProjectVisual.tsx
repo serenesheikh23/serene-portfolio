@@ -1,13 +1,5 @@
 import type { ProjectVisual as Visual } from "@/lib/content";
 
-const urls: Record<Visual, string> = {
-  marketly: "marketlly.store",
-  ismail: "ismailcosmetics.com",
-  codecraft: "codeeecrafttt.vercel.app",
-  madfox: "drama.gov.sy",
-  light: "light-promo.com",
-};
-
 const labels: Record<Visual, string> = {
   marketly: "Marketly interface study: an operations dashboard with three payment gateways and 86 API routes.",
   ismail: "Ismail Cosmetics interface study: a bilingual storefront with a 38-page React SPA.",
@@ -21,7 +13,7 @@ export default function ProjectVisual({ variant }: { variant: Visual }) {
     <div className={`pv pv--${variant}`} role="img" aria-label={labels[variant]}>
       <div className="pv__bar" aria-hidden="true">
         <span className="pv__mark" />
-        <span className="pv__url">{urls[variant]}</span>
+        <span className="pv__url">View live site ↗</span>
       </div>
 
       <div className="pv__body" aria-hidden="true">

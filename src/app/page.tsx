@@ -72,7 +72,11 @@ export default function Home() {
                 </div>
                 <div className="fact">
                   <dt>Open to</dt>
-                  <dd>Entry-level software engineer roles, Dallas–Fort Worth</dd>
+                  <dd>Entry-level software engineer roles · Open to relocation</dd>
+                </div>
+                <div className="fact">
+                  <dt>Work authorization</dt>
+                  <dd>U.S. citizen</dd>
                 </div>
                 <div className="fact">
                   <dt>Education</dt>
@@ -112,7 +116,7 @@ export default function Home() {
               </h2>
               <p className="section-intro">
                 Five builds, each with a real interface, a real API, and a
-                deployment behind it. Tap a row to open the short version.
+                deployment behind it. Tap a row for the summary.
               </p>
             </div>
           </header>
@@ -137,8 +141,7 @@ export default function Home() {
                 The decisions behind the numbers.
               </h2>
               <p className="section-intro">
-                Swipe the index, then read the longer note: the problem, what I
-                chose, and what shipped.
+                Swipe through the projects, then read the full write-up: the problem, my decisions, and the results.
               </p>
             </div>
           </header>
@@ -403,7 +406,7 @@ export default function Home() {
             <div className="about-copy">
               <p>
                 I&apos;m Serene, a full-stack software engineer based in Irving,
-                Texas. I earned a BS in Information Technology at the International University of Science and Technology in June 2026.
+                Texas. I graduated in June 2026 with a BS in Information Technology from the International University of Science and Technology.
               </p>
               <p>
                 I started shipping at Mad Fox, where I built a Laravel system end
@@ -413,10 +416,8 @@ export default function Home() {
                 each with its own front end, API, and deployment.
               </p>
               <p>
-                I&apos;m a native Arabic and English speaker. I like the part of
-                the work where a design has to survive real data and a real phone in a user&apos;s hand. I&apos;m looking for an entry-level software engineer
-                role in Dallas–Fort Worth where I can keep doing both the
-                interface and the system behind it.
+                I&apos;m a native Arabic and English speaker. I like the moment a design meets real data and a real phone. I&apos;m looking for an entry-level software engineer
+                role in Dallas–Fort Worth where I can work on both the interface and the systems behind it.
               </p>
 
               <dl className="credentials">
@@ -460,8 +461,7 @@ export default function Home() {
                 Hiring for the interface or the system?
               </h2>
               <p className="section-intro">
-                I&apos;m looking for an entry-level software engineer role in
-                Dallas–Fort Worth. Graduated June 2026; available for entry-level software engineering roles now.
+                I&apos;m a U.S. citizen based in Dallas–Fort Worth, open to relocation, and available to start now.
               </p>
             </div>
           </header>
