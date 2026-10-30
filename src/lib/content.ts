@@ -218,6 +218,7 @@ export const caseStudies: CaseStudy[] = [
       { value: "Live", label: "at drama.gov.sy" },
       { value: "Full", label: "admin dashboard" },
       { value: "RTL", label: "Arabic interface" },
+      { value: "CMS", label: "full CRUD, no code" },
     ],
     liveUrl: "https://drama.gov.sy/",
     visual: "madfox",
