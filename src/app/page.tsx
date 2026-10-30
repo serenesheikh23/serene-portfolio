@@ -403,8 +403,7 @@ export default function Home() {
             <div className="about-copy">
               <p>
                 I&apos;m Serene, a full-stack software engineer based in Irving,
-                Texas. I study Information Technology at the International
-                University of Science and Technology and graduated in June 2026.
+                Texas. I earned a BS in Information Technology at the International University of Science and Technology in June 2026.
               </p>
               <p>
                 I started shipping at Mad Fox, where I built a Laravel system end
