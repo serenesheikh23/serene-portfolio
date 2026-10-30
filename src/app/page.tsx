@@ -462,7 +462,7 @@ export default function Home() {
               </h2>
               <p className="section-intro">
                 I&apos;m looking for an entry-level software engineer role in
-                Dallas–Fort Worth. Graduated June 2026; available for full-time software engineering roles now.
+                Dallas–Fort Worth. Graduated June 2026; available for entry-level software engineering roles now.
               </p>
             </div>
           </header>

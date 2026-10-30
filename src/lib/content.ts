@@ -8,7 +8,7 @@ export const site = {
   cvName: "Serene_Sheikhalard_Software_Engineer.pdf",
   location: "Irving, Texas",
   market: "Dallas–Fort Worth",
-  availability: "Available for full-time software engineering roles · Dallas–Fort Worth",
+  availability: "Available for entry-level software engineering roles · Dallas–Fort Worth",
   education: "BS Information Technology, graduated June 2026",
   school: "International University of Science and Technology",
   languages: "Arabic (native) · English (native)",
