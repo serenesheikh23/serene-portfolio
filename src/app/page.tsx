@@ -414,8 +414,7 @@ export default function Home() {
               </p>
               <p>
                 I&apos;m a native Arabic and English speaker. I like the part of
-                the work where a design has to survive real data and a phone in
-                one hand. I&apos;m looking for an entry-level software engineer
+                the work where a design has to survive real data and a real phone in a user&apos;s hand. I&apos;m looking for an entry-level software engineer
                 role in Dallas–Fort Worth where I can keep doing both the
                 interface and the system behind it.
               </p>
