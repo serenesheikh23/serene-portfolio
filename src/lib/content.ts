@@ -70,7 +70,7 @@ export const projects: Project[] = [
     index: "03",
     title: "Code Craft",
     subtitle: "Agency site with a full CMS",
-    role: "Freelance full-stack developer",
+    role: "Creator & Developer",
     period: "Apr 2026 – present",
     summary:
       "A Next.js agency site with a 56-handler admin CMS, 36 pages, and a mobile LCP cut from 5.3s to 2.4s.",
@@ -88,7 +88,7 @@ export const projects: Project[] = [
     role: "Front-End Developer Trainee at Mad Fox",
     period: "May 2025 – Mar 2026",
     summary:
-      "The all-Arabic RTL CMS behind a live government site, with an admin dashboard covering every section and content field.",
+      "The all-Arabic RTL public website and admin dashboard behind a live government site.",
     stack: ["Laravel", "Blade", "Tailwind", "RTL"],
     metric: "Live government CMS · Full admin dashboard",
     liveUrl: "https://drama.gov.sy/",
@@ -163,7 +163,7 @@ export const caseStudies: CaseStudy[] = [
     decisions: [
       "Used i18next for locale switching and Redux Toolkit for cart, wishlist, and checkout state across a 38-page React SPA.",
       "Modeled the catalog and operations in 24 Eloquent models and 30 migrations, exposed through 110 API routes.",
-      "Integrated regional mobile wallet mobile-wallet payments server-side, keeping API credentials in config and handling the webhook callback.",
+      "Integrated regional mobile wallet payments server-side, keeping API credentials in config and handling the webhook callback.",
     ],
     stack: ["Laravel", "React 19", "Redux Toolkit", "i18next", "MySQL", "Docker"],
     results: [
@@ -180,7 +180,7 @@ export const caseStudies: CaseStudy[] = [
     index: "03",
     title: "Code Craft",
     subtitle: "An agency site its team can edit",
-    role: "Freelance full-stack developer",
+    role: "Creator & Developer",
     period: "Apr 2026 – present",
     problem:
       "I wanted my own agency site without a developer, while keeping the public pages fast on a phone.",
@@ -210,7 +210,7 @@ export const caseStudies: CaseStudy[] = [
       "A government institution needed staff to manage every section and content field of an all-Arabic site.",
     decisions: [
       "Built the Laravel system end to end: Blade front end, controllers, Eloquent models, and full database CRUD.",
-      "Delivered the all-Arabic RTL CMS with an admin dashboard covering every section and content field.",
+      "Delivered the all-Arabic (RTL) public website and admin dashboard, covering 10+ sections including news, articles, events, services, strategic goals, decrees, statistics, surveys, and custom pages.",
       "Reviewed peer PRs before merge, fixed bugs, and improved system performance across the platform.",
     ],
     stack: ["Laravel", "Blade", "Tailwind", "HTML/CSS", "RTL"],
