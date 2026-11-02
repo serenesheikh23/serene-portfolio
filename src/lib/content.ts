@@ -76,7 +76,7 @@ export const projects: Project[] = [
       "A Next.js agency site with a 56-handler admin CMS, 36 pages, and a mobile LCP cut from 5.3s to 2.4s.",
     stack: ["Next.js 15", "TypeScript", "Prisma", "Turso", "NextAuth", "Vercel"],
     metric: "56 API handlers · 36 pages · LCP 5.3s → 2.4s",
-    liveUrl: "https://codeeecrafttt.vercel.app",
+    liveUrl: "https://codecraftdigitalstudio.vercel.app",
     caseStudyId: "codecraft",
     visual: "codecraft",
   },
@@ -196,7 +196,7 @@ export const caseStudies: CaseStudy[] = [
       { value: "56", label: "API handlers" },
       { value: "97", label: "mobile accessibility" },
     ],
-    liveUrl: "https://codeeecrafttt.vercel.app",
+    liveUrl: "https://codecraftdigitalstudio.vercel.app",
     visual: "codecraft",
   },
   {
