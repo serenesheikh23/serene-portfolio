@@ -29,7 +29,7 @@ Four case studies, each with a real interface, a real API, and a deployment behi
 
 - **Marketly** — multi-role digital services store, 3 payment gateways, 86 API routes
 - **Ismail Cosmetics** — bilingual Arabic/English RTL e-commerce, 110 API routes, 38-page SPA
-- **Code Craft** — Next.js agency site with a full admin CMS
+- **Code Craft** — Next.js digital studio site with a full admin CMS
 - **drama.gov.sy** — live government institutional CMS, all-Arabic RTL, full admin dashboard
 
 ---
@@ -69,3 +69,8 @@ git clone https://github.com/serenesheikh23/serene-portfolio.git
 cd serene-portfolio
 npm install
 npm run dev
+```
+
+---
+
+Built by Serene Sheikhalard.
