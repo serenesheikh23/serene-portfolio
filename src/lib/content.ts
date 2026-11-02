@@ -14,7 +14,7 @@ export const site = {
   languages: "Arabic (native) · English (native)",
   url: "https://serene-sheikhalard-portfolio.vercel.app",
   description:
-    "Entry-level software engineer building fast, accessible React and Next.js interfaces with Laravel backends. Based in Dallas–Fort Worth, open to relocation. Selected work: Marketly, Ismail Cosmetics, Code Craft, and drama.gov.sy.",
+    "Entry-level software engineer building fast, accessible React and Next.js interfaces with Laravel backends. Based in Dallas–Fort Worth, open to relocation. Selected work: Marketlly, Ismail Cosmetics, Code Craft, and drama.gov.sy.",
 };
 
 export type ProjectVisual = "marketly" | "ismail" | "codecraft" | "madfox" | "light";
@@ -38,14 +38,14 @@ export const projects: Project[] = [
   {
     slug: "marketly",
     index: "01",
-    title: "Marketly",
-    subtitle: "Multi-role digital services store",
-    role: "Freelance full-stack developer",
+    title: "Marketlly",
+    subtitle: "Multi-role marketplace with crypto & automation",
+    role: "Full-stack developer",
     period: "Apr 2026 – present",
     summary:
-      "A multi-role store with three payment gateways and webhooks that stay idempotent when a provider retries.",
-    stack: ["Laravel 13", "React 19", "TypeScript", "MySQL", "Redis", "Docker"],
-    metric: "86 API routes · 3 gateways · 66 PHPUnit tests",
+      "A secure digital marketplace featuring crypto payment verification, VIP tier logic, and automated supplier fulfillment.",
+    stack: ["Laravel 13", "React 19", "TypeScript", "MySQL", "Redis", "Docker", "Node.js"],
+    metric: "Crypto payments · VIP tiers · Bot automation",
     liveUrl: "https://marketlly.store",
     caseStudyId: "marketly",
     visual: "marketly",
@@ -130,23 +130,24 @@ export const caseStudies: CaseStudy[] = [
   {
     id: "marketly",
     index: "01",
-    title: "Marketly",
-    subtitle: "Three gateways, one order lifecycle",
-    role: "Freelance full-stack developer",
+    title: "Marketlly",
+    subtitle: "Crypto payments, precise math, and automation",
+    role: "Full-stack developer",
     period: "Apr 2026 – present",
     problem:
-      "A multi-role digital services store needed three payment routes that could fail independently. A webhook that arrives twice must not pay an order twice.",
+      "A digital marketplace needed to handle high-value crypto transactions securely, enforce strict VIP rules, and automate supplier fulfillment without risking double-charging users on webhook retries.",
     decisions: [
-      "Designed a pluggable PaymentGatewayInterface so Binance Pay, USDT BEP-20, and a regional mobile wallet share one order lifecycle.",
-      "Built idempotent webhook handlers around the interface, then covered auth, order lifecycle, VIP logic, webhooks, the partner API, and upstream integration with tests.",
-      "Dockerized php-fpm, nginx, MySQL, Redis, and Reverb WebSockets, with GitHub Actions CI and a code-split React SPA.",
+      "Designed a pluggable payment gateway interface supporting Binance Pay, USDT (BEP-20), and manual transfers, ensuring strict webhook idempotency to prevent double-crediting.",
+      "Engineered a custom PreciseMoney service using 24-decimal precision to eliminate floating-point rounding errors in crypto calculations.",
+      "Built a Node.js automation bot to send real-time Telegram alerts for admin approvals and system events.",
+      "Integrated automated supplier fulfillment, with background queue jobs that handle upstream failures by automatically refunding user balances.",
     ],
-    stack: ["Laravel 13", "React 19", "TypeScript", "MySQL", "Redis", "Docker", "GitHub Actions"],
+    stack: ["Laravel 13", "React 19", "TypeScript", "MySQL", "Redis", "Docker", "Node.js"],
     results: [
-      { value: "86", label: "API routes" },
       { value: "3", label: "payment gateways" },
-      { value: "66", label: "PHPUnit test cases" },
-      { value: "1,233", label: "lines across 11 feature files" },
+      { value: "24", label: "decimal crypto precision" },
+      { value: "100%", label: "idempotent webhooks" },
+      { value: "1", label: "automated Telegram bot" },
     ],
     liveUrl: "https://marketlly.store",
     visual: "marketly",
@@ -256,7 +257,7 @@ export const craft = [
     proof: "Redux",
     proofLabel: "Toolkit + i18next across a 38-page SPA",
     detail:
-      "Marketly and Ismail Cosmetics use React 19 and TypeScript. Ismail adds Redux Toolkit for cart, wishlist, and checkout state, with i18next handling locale switching.",
+      "Marketlly and Ismail Cosmetics use React 19 and TypeScript. Ismail adds Redux Toolkit for cart, wishlist, and checkout state, with i18next handling locale switching.",
   },
 ];
 
@@ -264,12 +265,12 @@ export const processSteps = [
   {
     num: "01",
     title: "Test the parts that can break money",
-    text: "Marketly carries 66 PHPUnit test cases across 11 feature files, covering auth, order lifecycle, VIP logic, webhooks, the partner API, and upstream integration.",
+    text: "Marketlly carries a comprehensive PHPUnit suite covering crypto payment verification (BEP-20), webhook idempotency, and VIP logic, ensuring a user is never double-charged.",
   },
   {
     num: "02",
     title: "Make the pipeline boring",
-    text: "Dockerized php-fpm, nginx, MySQL, Redis, and Reverb, with GitHub Actions CI. Code Craft adds 8 Vitest route tests on top.",
+    text: "Dockerized php-fpm, nginx, MySQL, and Redis. Added a Node.js bot for real-time admin alerts and GitHub Actions CI. Code Craft adds 8 Vitest route tests on top.",
   },
   {
     num: "03",
@@ -279,7 +280,7 @@ export const processSteps = [
   {
     num: "04",
     title: "Ship it, then keep it live",
-    text: "Marketly, Ismail Cosmetics, Code Craft, the live drama.gov.sy CMS, and light-promo.com, deployed with Docker, Nginx, Vercel, and Railway.",
+    text: "Marketlly, Ismail Cosmetics, Code Craft, the live drama.gov.sy CMS, and light-promo.com, deployed with Docker, Nginx, Vercel, and Railway.",
   },
 ];
 
