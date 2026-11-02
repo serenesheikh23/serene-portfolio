@@ -43,9 +43,9 @@ export const projects: Project[] = [
     role: "Full-stack developer",
     period: "Apr 2026 – present",
     summary:
-      "A secure digital marketplace featuring crypto payment verification, VIP tier logic, and automated supplier fulfillment.",
+      "A secure digital marketplace featuring crypto payment verification, VIP tier logic, automated supplier fulfillment, and a Node.js bot for admin alerts.",
     stack: ["Laravel 13", "React 19", "TypeScript", "MySQL", "Redis", "Docker", "Node.js"],
-    metric: "Crypto payments · VIP tiers · Bot automation",
+    metric: "5 payment gateways · 24-decimal precision · 66 tests",
     liveUrl: "https://marketlly.store",
     caseStudyId: "marketly",
     visual: "marketly",
@@ -137,17 +137,17 @@ export const caseStudies: CaseStudy[] = [
     problem:
       "A digital marketplace needed to handle high-value crypto transactions securely, enforce strict VIP rules, and automate supplier fulfillment without risking double-charging users on webhook retries.",
     decisions: [
-      "Designed a pluggable payment gateway interface supporting Binance Pay, USDT (BEP-20), and manual transfers, ensuring strict webhook idempotency to prevent double-crediting.",
+      "Designed a pluggable payment gateway interface supporting 5 live payment methods (including Binance Pay, USDT BEP-20, and manual transfers), ensuring strict webhook idempotency to prevent double-crediting.",
       "Engineered a custom PreciseMoney service using 24-decimal precision to eliminate floating-point rounding errors in crypto calculations.",
       "Built a Node.js automation bot to send real-time Telegram alerts for admin approvals and system events.",
-      "Integrated automated supplier fulfillment, with background queue jobs that handle upstream failures by automatically refunding user balances.",
+      "Integrated automated supplier fulfillment, with background queue jobs that handle upstream failures by automatically refunding user balances across 86 API routes.",
     ],
     stack: ["Laravel 13", "React 19", "TypeScript", "MySQL", "Redis", "Docker", "Node.js"],
     results: [
-      { value: "3", label: "payment gateways" },
+      { value: "5", label: "live payment gateways" },
       { value: "24", label: "decimal crypto precision" },
       { value: "100%", label: "idempotent webhooks" },
-      { value: "1", label: "automated Telegram bot" },
+      { value: "66", label: "PHPUnit test cases" },
     ],
     liveUrl: "https://marketlly.store",
     visual: "marketly",
@@ -265,12 +265,12 @@ export const processSteps = [
   {
     num: "01",
     title: "Test the parts that can break money",
-    text: "Marketlly carries a comprehensive PHPUnit suite covering crypto payment verification (BEP-20), webhook idempotency, and VIP logic, ensuring a user is never double-charged.",
+    text: "Marketlly carries 66 PHPUnit test cases across 11 feature files, covering crypto payment verification (BEP-20), webhook idempotency, VIP logic, and partner APIs.",
   },
   {
     num: "02",
     title: "Make the pipeline boring",
-    text: "Dockerized php-fpm, nginx, MySQL, and Redis. Added a Node.js bot for real-time admin alerts and GitHub Actions CI. Code Craft adds 8 Vitest route tests on top.",
+    text: "Dockerized php-fpm, nginx, MySQL, and Redis. Built a Node.js bot for real-time admin alerts and set up GitHub Actions CI. Code Craft adds 8 Vitest route tests on top.",
   },
   {
     num: "03",
