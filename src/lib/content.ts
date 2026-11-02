@@ -163,7 +163,7 @@ export const caseStudies: CaseStudy[] = [
     decisions: [
       "Used i18next for locale switching and Redux Toolkit for cart, wishlist, and checkout state across a 38-page React SPA.",
       "Modeled the catalog and operations in 24 Eloquent models and 30 migrations, exposed through 110 API routes.",
-      "Integrated ShamCash mobile-wallet payments server-side, keeping API credentials in config and handling the webhook callback.",
+      "Integrated regional mobile wallet mobile-wallet payments server-side, keeping API credentials in config and handling the webhook callback.",
     ],
     stack: ["Laravel", "React 19", "Redux Toolkit", "i18next", "MySQL", "Docker"],
     results: [
@@ -183,7 +183,7 @@ export const caseStudies: CaseStudy[] = [
     role: "Freelance full-stack developer",
     period: "Apr 2026 – present",
     problem:
-      "An agency needed to update its own site without a developer, while keeping the public pages fast on a phone.",
+      "I wanted my own agency site without a developer, while keeping the public pages fast on a phone.",
     decisions: [
       "Built a 56-handler admin CMS on 12 Prisma models, with JWT session auth through NextAuth and Resend for enquiries.",
       "Split the public site into 36 pages and 30 components, then tested the route handlers with 8 Vitest tests.",
